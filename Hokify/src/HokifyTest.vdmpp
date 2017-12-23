@@ -10,6 +10,9 @@ instance variables
 	employer1: Employer := new Employer("Ana");
 	employer2: Employer := new Employer("Luis");
 	
+	--Instance of the application
+  public static hokify: Hokify := new Hokify();
+	
 operations
 	public static main: () ==> ()
 	main() == (
@@ -17,15 +20,20 @@ operations
 		
 		IO`print("Test Create User => ");
 		test.testCreateUser();
-		IO`println("Passed"); 
+		IO`println("Passed");
+		
+		IO`print("Test Add Interest => ");
+		test.testAddInterest();
+		IO`println("Passed");
+		
+		IO`print("Test Add Skills => ");
+		test.testAddSkills();
+		IO`println("Passed");
 	);
 	
-	--TEST CREATE USERS
+	--Test Create Users
 	private testCreateUser: () ==> ()
 	testCreateUser() == (
-		dcl hokify : Hokify := Hokify`clearInstance();
-		dcl names: set of (seq of (char)) := {};
-		dcl n: bool;
 		
 		hokify.createUser(employee1);
 		hokify.createUser(employee2);
@@ -36,6 +44,59 @@ operations
 		assertEqual(4,card hokify.users);
 		assertEqual({employee1, employee2,employer1,employer2}, hokify.users);
 		
+	);
+	
+	--Test Add Interest 
+	private testAddInterest: () ==> ()
+	testAddInterest() == (
+		dcl user1: Employee := hokify.getUserByName("Sara");
+		dcl user2: Employee := hokify.getUserByName("Rita");
+		
+		user1.AddInterest("Programação");
+		user1.AddInterest("Web");
+		user2.AddInterest("Programação");
+		user2.AddInterest("Web");
+		user2.AddInterest("Design");
+		
+		assertEqual(2, card user1.Interests);
+		assertEqual(3, card user2.Interests);
+	);
+	
+	--Test Add Skill
+	private testAddSkills: () ==> ()
+	testAddSkills() == (
+		dcl user1: Employee := hokify.getUserByName("Sara");
+		dcl user2: Employee := hokify.getUserByName("Rita");
+		
+		user1.AddSkill("Java");
+		user1.AddSkill("C++");
+		user2.AddSkill("HTML");
+		
+		assertEqual(2, card user1.Skills);
+		assertEqual(1, card user2.Skills);
+	);
+	
+
+	
+	/*
+	 TESTING EXCEPTIONS
+	*/
+	
+	--Test fail add interest : interest is ""
+	public testFailAddInterest: () ==> ()
+	testFailAddInterest() == (
+		dcl user1: Employee := new Employee("Test");
+		
+		user1.AddInterest("");
+	);
+	
+	--Test add a repeated interest
+	public testAddRepeatedInterest: () ==> ()
+	testAddRepeatedInterest() == (
+		dcl user1: Employee := new Employee("Test");
+		
+		user1.AddInterest("I1");
+		user1.AddInterest("I1");
 	);
 	
 functions

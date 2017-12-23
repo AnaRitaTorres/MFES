@@ -2,29 +2,25 @@ class Hokify
 instance variables
   public users:set of (User) := {};
   public jobs:set of (Job) := {};
-  
-  --Instance of the application
-  private static hokify: Hokify := new Hokify();
-  
+
 operations
-	private Hokify: () ==> Hokify
+	public Hokify: () ==> Hokify
 	Hokify() == return self
 	post users = {} and jobs = {};
 	
-	public pure static getInstance: () ==> Hokify
-	getInstance() == return hokify;
-	
-	public static clearInstance: () ==> Hokify
-	clearInstance() == (
-		hokify := new Hokify();
-		return getInstance();
-	)
-	post RESULT.users = {} and RESULT.jobs = {} ;
-
-
 	public createUser: User ==> ()
 	createUser(user) == users := users union {user}
 	pre user not in set users
 	post users = users~ union {user};
+	
+	public getUserByName: seq of char ==> User 
+	getUserByName(name) == (
+		dcl u : User;
+		for all user in set users do
+			if user.Name = name
+			then return user;
+			
+		return u;
+	);
 	
 end Hokify

@@ -1,10 +1,14 @@
 class Job
+
+types
+	public JobType=<FullTime> | <PartTime>;
+	
 instance variables
   Name:seq of (char) := "";
   Skills:seq of (char) := "";
   Area:seq of (char) := "";
   Location:seq of (char) := "";
-  Fulltime: bool := false;
+  Fulltime: JobType := <FullTime>;
   Description:seq of (char) := "";
 
 end Job
