@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xmi:id="_H2CLQOcgEeeOGvm7dvdsuw" name="hokify">
+  <eAnnotations xmi:id="_H2CLQecgEeeOGvm7dvdsuw" source="Objing">
+    <contents xmi:type="uml:Property" xmi:id="_H2CLQucgEeeOGvm7dvdsuw" name="exporterVersion">
+      <defaultValue xmi:type="uml:LiteralString" xmi:id="_H2CLQ-cgEeeOGvm7dvdsuw" value="3.0.0"/>
+    </contents>
+  </eAnnotations>
+  <packagedElement xmi:type="uml:Class" xmi:id="_H2CLROcgEeeOGvm7dvdsuw" name="User">
+    <ownedAttribute xmi:id="_H2CLRecgEeeOGvm7dvdsuw" name="job" visibility="public" type="_H2CLTucgEeeOGvm7dvdsuw" association="_H2CLSucgEeeOGvm7dvdsuw">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_H2CLRucgEeeOGvm7dvdsuw" value="*"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_H2CLR-cgEeeOGvm7dvdsuw"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_H2CLSOcgEeeOGvm7dvdsuw" name="Name" visibility="public" isUnique="false">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_H2CLSecgEeeOGvm7dvdsuw" name="Type" visibility="public" isUnique="false">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:AssociationClass" xmi:id="_H2CLSucgEeeOGvm7dvdsuw" name="Application" memberEnd="_H2CLRecgEeeOGvm7dvdsuw _H2CLS-cgEeeOGvm7dvdsuw">
+    <ownedEnd xmi:id="_H2CLS-cgEeeOGvm7dvdsuw" visibility="public" type="_H2CLROcgEeeOGvm7dvdsuw" association="_H2CLSucgEeeOGvm7dvdsuw">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_H2CLTOcgEeeOGvm7dvdsuw" value="*"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_H2CLTecgEeeOGvm7dvdsuw"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_H2CLTucgEeeOGvm7dvdsuw" name="Job">
+    <ownedAttribute xmi:id="_H2CLT-cgEeeOGvm7dvdsuw" name="Name" visibility="public" isUnique="false">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_H2CLUOcgEeeOGvm7dvdsuw" name="Skills" visibility="public" isUnique="false">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_H2CLUecgEeeOGvm7dvdsuw" name="Area" visibility="public" isUnique="false">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_H2CLUucgEeeOGvm7dvdsuw" name="Location" visibility="public" isUnique="false">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_H2CLU-cgEeeOGvm7dvdsuw" name="Type" visibility="public" type="_H2CLaOcgEeeOGvm7dvdsuw" isUnique="false"/>
+    <ownedAttribute xmi:id="_H2CLVOcgEeeOGvm7dvdsuw" name="Description" visibility="public" isUnique="false">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_H2CLVecgEeeOGvm7dvdsuw" name="Employee">
+    <generalization xmi:id="_H2CLVucgEeeOGvm7dvdsuw" general="_H2CLROcgEeeOGvm7dvdsuw"/>
+    <ownedAttribute xmi:id="_H2CLV-cgEeeOGvm7dvdsuw" name="Skills" visibility="public" isUnique="false">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_H2CLWOcgEeeOGvm7dvdsuw" name="Interests" visibility="public" isUnique="false">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_H2CLWecgEeeOGvm7dvdsuw" name="Location" visibility="public" isUnique="false">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_H2CLWucgEeeOGvm7dvdsuw" name="CV" visibility="public" isUnique="false">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_H2CLW-cgEeeOGvm7dvdsuw" name="Employer">
+    <generalization xmi:id="_H2CLXOcgEeeOGvm7dvdsuw" general="_H2CLROcgEeeOGvm7dvdsuw"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_H2CLXecgEeeOGvm7dvdsuw" name="Hokify">
+    <ownedAttribute xmi:id="_H2CLXucgEeeOGvm7dvdsuw" name="user" visibility="public" type="_H2CLROcgEeeOGvm7dvdsuw" association="_H2CLZOcgEeeOGvm7dvdsuw">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_H2CLX-cgEeeOGvm7dvdsuw" value="*"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_H2CLYOcgEeeOGvm7dvdsuw"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_H2CLYecgEeeOGvm7dvdsuw" name="job" visibility="public" type="_H2CLTucgEeeOGvm7dvdsuw" association="_H2CLZucgEeeOGvm7dvdsuw">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_H2CLYucgEeeOGvm7dvdsuw" value="*"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_H2CLY-cgEeeOGvm7dvdsuw"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_H2CLZOcgEeeOGvm7dvdsuw" memberEnd="_H2CLXucgEeeOGvm7dvdsuw _H2CLZecgEeeOGvm7dvdsuw">
+    <ownedEnd xmi:id="_H2CLZecgEeeOGvm7dvdsuw" visibility="public" type="_H2CLXecgEeeOGvm7dvdsuw" association="_H2CLZOcgEeeOGvm7dvdsuw"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_H2CLZucgEeeOGvm7dvdsuw" memberEnd="_H2CLYecgEeeOGvm7dvdsuw _H2CLZ-cgEeeOGvm7dvdsuw">
+    <ownedEnd xmi:id="_H2CLZ-cgEeeOGvm7dvdsuw" visibility="public" type="_H2CLXecgEeeOGvm7dvdsuw" association="_H2CLZucgEeeOGvm7dvdsuw"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Enumeration" xmi:id="_H2CLaOcgEeeOGvm7dvdsuw" name="JobType">
+    <ownedLiteral xmi:id="_H2CLaecgEeeOGvm7dvdsuw" name="Full-time"/>
+    <ownedLiteral xmi:id="_H2CLaucgEeeOGvm7dvdsuw" name="Part-time"/>
+  </packagedElement>
+</uml:Model>

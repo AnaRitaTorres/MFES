@@ -1,0 +1,45 @@
+class HokifyTest is subclass of MyTestCase
+types
+-- TODO Define types here
+values
+-- TODO Define values here
+instance variables
+	employee1 : Employee := new Employee("Sara");
+	employee2 : Employee := new Employee("Rita");
+	
+	employer1: Employer := new Employer("Ana");
+	employer2: Employer := new Employer("Luis");
+	
+operations
+	public static main: () ==> ()
+	main() == (
+		dcl test : HokifyTest := new HokifyTest();
+		
+		IO`print("Test Create User => ");
+		test.testCreateUser();
+		IO`println("Passed"); 
+	);
+	
+	--TEST CREATE USERS
+	private testCreateUser: () ==> ()
+	testCreateUser() == (
+		dcl hokify : Hokify := Hokify`clearInstance();
+		dcl names: set of (seq of (char)) := {};
+		dcl n: bool;
+		
+		hokify.createUser(employee1);
+		hokify.createUser(employee2);
+		hokify.createUser(employer1);
+		hokify.createUser(employer2);
+		
+		--Tests if all users were created
+		assertEqual(4,card hokify.users);
+		assertEqual({employee1, employee2,employer1,employer2}, hokify.users);
+		
+	);
+	
+functions
+-- TODO Define functiones here
+traces
+-- TODO Define Combinatorial Test Traces here
+end HokifyTest

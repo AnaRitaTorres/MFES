@@ -1,0 +1,12 @@
+class User
+instance variables
+  public Name:seq of (char) := "";
+
+operations 
+	public User: seq of char ==> User
+	User(name) == (
+		Name := name;
+	)
+	post Name = name;
+	
+end User

@@ -1,0 +1,5 @@
+class Application
+	instance variables
+		user: User;
+		job: Job;
+end Application

@@ -1,0 +1,10 @@
+class Job
+instance variables
+  Name:seq of (char) := "";
+  Skills:seq of (char) := "";
+  Area:seq of (char) := "";
+  Location:seq of (char) := "";
+  Fulltime: bool := false;
+  Description:seq of (char) := "";
+
+end Job

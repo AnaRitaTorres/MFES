@@ -1,0 +1,13 @@
+class Employer is subclass of User
+	instance variables
+		public jobs : set of (Job) := {};
+		
+	operations
+	public Employer: seq of char ==> Employer
+	Employer(name) == (
+		User(name);
+		return self;
+	)
+	post Name = name;
+		
+end Employer

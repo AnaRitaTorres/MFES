@@ -1,0 +1,17 @@
+class Employee is subclass of User
+instance variables
+  public Skills:seq of (char) := "";
+  public Interests:seq of (char) := "";
+  public Location:seq of (char) := "";
+  public CV:seq of (char) := "";
+  
+  
+ operations
+ 	public Employee: seq of char ==> Employee
+ 	Employee(name) == (
+ 		User(name);
+ 		return self
+ 	)
+ 	post Name = name;
+
+end Employee
