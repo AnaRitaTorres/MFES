@@ -14,6 +14,7 @@ instance variables
   public static hokify: Hokify := new Hokify();
 	
 operations
+  --Runs all tests
 	public static main: () ==> ()
 	main() == (
 		dcl test : HokifyTest := new HokifyTest();
@@ -28,6 +29,14 @@ operations
 		
 		IO`print("Test Add Skills => ");
 		test.testAddSkills();
+		IO`println("Passed");
+		
+		IO`print("Test Add Location => ");
+		test.testAddLocation();
+		IO`println("Passed");
+		
+		IO`print("Test Add CV => ");
+		test.testAddCV();
 		IO`println("Passed");
 	);
 	
@@ -76,7 +85,36 @@ operations
 		assertEqual(1, card user2.Skills);
 	);
 	
-
+	--Test Add Location
+	private testAddLocation: () ==> ()
+	testAddLocation() == (
+		dcl user1: Employee := hokify.getUserByName("Sara");
+		dcl user2: Employee := hokify.getUserByName("Rita");
+		
+		user1.AddLocation("Porto");
+		user2.AddLocation("Lisboa");
+		
+		assertTrue(user1.Location <> user2.Location);
+		assertEqual("Porto", user1.Location);
+		assertEqual("Lisboa", user2.Location);
+		
+		user2.AddLocation("Porto");
+		assertEqual("Porto",user2.Location);
+	);
+	
+	--Test Add CV
+	private testAddCV: () ==> ()
+	testAddCV() == (
+		dcl user1: Employee := hokify.getUserByName("Sara");
+		dcl user2: Employee := hokify.getUserByName("Rita");
+		
+		user1.CreateCV("Nome: Sara Santos Morada: Rua Testes"); 
+		user2.CreateCV("Nome: Rita Torres Morada: Rua Teste Emprego: ....");
+		
+		assertTrue(user1.CV <> "");
+		assertTrue(user2.CV <> "");
+		assertTrue(user1.CV <> user2.CV);
+	);
 	
 	/*
 	 TESTING EXCEPTIONS
