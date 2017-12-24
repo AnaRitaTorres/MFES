@@ -1,6 +1,5 @@
 class HokifyTest is subclass of MyTestCase
 types
--- TODO Define types here
 values
 -- TODO Define values here
 instance variables
@@ -9,6 +8,9 @@ instance variables
 	
 	employer1: Employer := new Employer("Ana");
 	employer2: Employer := new Employer("Luis");
+	
+	job1: Job := new Job("Programador HTML", {"HTML"}, {"Programação","Web"},"Porto", <FullTime>, "Vaga para programador em HTML");
+	job2: Job := new Job("Programador Versátil", {"Java","C++"}, {"Programação"},"Porto", <PartTime>, "Vaga para programador em multiplas linguagens");
 	
 	--Instance of the application
   public static hokify: Hokify := new Hokify();
@@ -37,6 +39,10 @@ operations
 		
 		IO`print("Test Add CV => ");
 		test.testAddCV();
+		IO`println("Passed");
+		
+		IO`print("Test Add Job => ");
+		test.testAddJob();
 		IO`println("Passed");
 	);
 	
@@ -114,6 +120,21 @@ operations
 		assertTrue(user1.CV <> "");
 		assertTrue(user2.CV <> "");
 		assertTrue(user1.CV <> user2.CV);
+	);
+	
+	--Test Add job
+	private testAddJob: () ==> ()
+	testAddJob() == (
+		dcl user1: Employer := hokify.getUserByName("Ana");
+		dcl user2: Employer := hokify.getUserByName("Luis");
+		
+		hokify.addJob(user1,job1);
+		hokify.addJob(user2, job2);
+		
+		assertEqual(2, card hokify.jobs);
+		assertEqual({job1,job2}, hokify.jobs);
+		assertEqual(1, card user1.jobs);
+		assertEqual(1, card user1.jobs);
 	);
 	
 	/*

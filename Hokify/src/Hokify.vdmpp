@@ -4,15 +4,18 @@ instance variables
   public jobs:set of (Job) := {};
 
 operations
+  --Creates a new instance of Hokify
 	public Hokify: () ==> Hokify
 	Hokify() == return self
 	post users = {} and jobs = {};
 	
+	--Adds a new User
 	public createUser: User ==> ()
 	createUser(user) == users := users union {user}
 	pre user not in set users
 	post users = users~ union {user};
 	
+	--Gets User by Name
 	public getUserByName: seq of char ==> User 
 	getUserByName(name) == (
 		dcl u : User;
@@ -22,5 +25,14 @@ operations
 			
 		return u;
 	);
+	
+	--Adds a new Job
+	public addJob: Employer * Job ==> ()
+	addJob(user, job) == (
+	 user.AddJob(job);
+	 jobs := jobs union {job};
+	)
+	pre user in set users and job not in set jobs
+	post jobs = jobs~ union {job};
 	
 end Hokify

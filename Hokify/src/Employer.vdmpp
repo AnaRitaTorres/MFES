@@ -3,11 +3,20 @@ class Employer is subclass of User
 		public jobs : set of (Job) := {};
 		
 	operations
-	public Employer: seq of char ==> Employer
-	Employer(name) == (
-		User(name);
-		return self;
-	)
-	post Name = name;
+		--Creates a new Employer
+		public Employer: seq of char ==> Employer
+		Employer(name) == (
+			User(name);
+			return self;
+		)
+		post Name = name;
+		
+		--Adds new Job
+		public AddJob: Job ==> ()
+		AddJob(job) == (
+			jobs := jobs union {job}
+		)
+		pre job not in set jobs
+		post jobs = jobs~ union {job};
 		
 end Employer

@@ -1,14 +1,31 @@
 class Job
 
 types
-	public JobType=<FullTime> | <PartTime>;
+	public JobType= <FullTime> | <PartTime>;
 	
 instance variables
   Name:seq of (char) := "";
-  Skills:seq of (char) := "";
-  Area:seq of (char) := "";
+  Skills: set of (seq of char) := {};
+  Areas: set of (seq of char) := {};
   Location:seq of (char) := "";
-  Fulltime: JobType := <FullTime>;
+  Type: JobType := <FullTime>;
   Description:seq of (char) := "";
+  
+operations 
+	--Create a new Job
+	public Job: seq of (char) * set of (seq of char) * set of (seq of char) * seq of (char) * JobType * seq of (char) ==> Job
+	Job(name, skills, areas, location, type, description) == (
+		Name := name;
+		Skills := skills;
+		Areas := areas;
+		Location := location;
+		Type := type;
+		Description := description;
+	)
+	post Name = name and
+	Skills = skills and
+	Areas = areas and
+	Location = location and
+	Description = description;
 
 end Job
