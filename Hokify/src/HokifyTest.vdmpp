@@ -44,6 +44,26 @@ operations
 		IO`print("Test Add Job => ");
 		test.testAddJob();
 		IO`println("Passed");
+		
+		IO`print("Test Add Job Skill => ");
+		test.testAddJobSkill();
+		IO`println("Passed");
+		
+		IO`print("Test Add Job Area => ");
+		test.testAddJobArea();
+		IO`println("Passed");
+		
+		IO`print("Test Change Job Location => ");
+		test.testChangeJobLocation();
+		IO`println("Passed");
+		
+		IO`print("Test Change Job Type => ");
+		test.testChangeJobType();
+		IO`println("Passed");
+		
+		IO`print("Test Change Job Description => ");
+		test.testChangeJobDescription();
+		IO`println("Passed");
 	);
 	
 	--Test Create Users
@@ -136,6 +156,57 @@ operations
 		assertEqual(1, card user1.jobs);
 		assertEqual(1, card user1.jobs);
 	);
+	
+	--Test Add Job Skill
+	private testAddJobSkill: () ==> ()
+	testAddJobSkill() == (
+		job1.addSkill("CSS");
+		job2.addSkill("VDM++");
+		
+		assertEqual({"CSS","HTML"},job1.getSkills());
+		assertEqual({"VDM++","Java","C++"},job2.getSkills());
+	);
+	
+	--Test Add Job Area
+	private testAddJobArea: () ==> ()
+	testAddJobArea() == (
+		job1.addArea("Engenharia");
+		job2.addArea("Engenharia");
+		
+		assertEqual({"Engenharia","Programação","Web"}, job1.getAreas());
+		assertEqual({"Engenharia","Programação"}, job2.getAreas());
+	);
+	
+	--Test Change Job Location
+	private testChangeJobLocation: () ==> ()
+	testChangeJobLocation() == (
+		job1.ChangeLocation("Maia");
+		job2.ChangeLocation("Lisboa");
+		
+		assertEqual("Maia", job1.getLocation());
+		assertEqual("Lisboa", job2.getLocation());
+	); 
+	
+	--Test Change Job Type
+	private testChangeJobType: () ==> ()
+	testChangeJobType() == (
+		job1.ChangeType(<PartTime>);
+		job2.ChangeType(<FullTime>);
+		
+		assertEqual(<PartTime>, job1.getType());
+		assertEqual(<FullTime>, job2.getType());
+	);
+	
+	--Test Change Job Description
+	private testChangeJobDescription: () ==> ()
+	testChangeJobDescription() == (
+		job1.ChangeDescription("Vaga para programador em HTML e CSS");
+		job2.ChangeDescription("Vaga para programador em multiplas linguagens a tempo inteiro");
+		
+		assertEqual("Vaga para programador em HTML e CSS", job1.getDescription());
+		assertEqual("Vaga para programador em multiplas linguagens a tempo inteiro", job2.getDescription());
+	);
+	
 	
 	/*
 	 TESTING EXCEPTIONS

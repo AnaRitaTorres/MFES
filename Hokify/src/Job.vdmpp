@@ -26,6 +26,77 @@ operations
 	Skills = skills and
 	Areas = areas and
 	Location = location and
-	Description = description;
+	Description = description and 
+	Type = type;
+	
+	--Add skill
+	public addSkill: seq of char ==> ()
+	addSkill(skill) == (
+		Skills := Skills union {skill};
+	)
+	pre skill not in set Skills and skill <> ""
+	post Skills = Skills~ union {skill};
+	
+	--Add area
+	public addArea: seq of char ==> ()
+	addArea(area) == (
+		Areas := Areas union {area};
+	)
+	pre area not in set Areas and area <> ""
+	post Areas = Areas~ union {area};
+	
+	--Change  Location
+	public ChangeLocation: seq of char ==> ()
+	ChangeLocation(location) == (
+		Location := location;
+	)
+	pre location <> "" and location <> Location
+	post Location = location;
+	
+	--Change Type
+	public ChangeType: JobType ==> ()
+	ChangeType(type) == (
+		Type := type;
+	)
+	pre type = <FullTime> or type = <PartTime>
+	post Type = type;
+	
+	--Change description
+	public ChangeDescription: seq of char ==> ()
+	ChangeDescription(description) == (
+		Description := description;
+	)
+	pre Description <> description and description <> ""
+	post Description = description;
+	
+	--Get Skills
+	public getSkills: () ==>  set of (seq of char)
+	getSkills() == (
+	 return Skills;
+	);
+	
+	--Get Areas
+	public getAreas: () ==>  set of (seq of char)
+	getAreas() == (
+	 return Areas;
+	);
+	
+	--Get Location
+	public getLocation: () ==>  seq of char
+	getLocation() == (
+	 return Location;
+	);
+	
+	--Get Type
+	public getType: () ==>  JobType
+	getType() == (
+	 return Type;
+	);
+	
+	--Get Description
+	public getDescription: () ==>  seq of char
+	getDescription() == (
+	 return Description;
+	);
 
 end Job
