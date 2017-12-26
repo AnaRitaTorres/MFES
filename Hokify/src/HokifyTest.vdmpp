@@ -64,6 +64,10 @@ operations
 		IO`print("Test Change Job Description => ");
 		test.testChangeJobDescription();
 		IO`println("Passed");
+		
+		IO`print("Test Change User Name => ");
+		test.testChangeName();
+		IO`println("Passed");
 	);
 	
 	--Test Create Users
@@ -87,11 +91,11 @@ operations
 		dcl user1: Employee := hokify.getUserByName("Sara");
 		dcl user2: Employee := hokify.getUserByName("Rita");
 		
-		user1.AddInterest("Programação");
-		user1.AddInterest("Web");
-		user2.AddInterest("Programação");
-		user2.AddInterest("Web");
-		user2.AddInterest("Design");
+		user1.addInterest("Programação");
+		user1.addInterest("Web");
+		user2.addInterest("Programação");
+		user2.addInterest("Web");
+		user2.addInterest("Design");
 		
 		assertEqual(2, card user1.Interests);
 		assertEqual(3, card user2.Interests);
@@ -103,9 +107,9 @@ operations
 		dcl user1: Employee := hokify.getUserByName("Sara");
 		dcl user2: Employee := hokify.getUserByName("Rita");
 		
-		user1.AddSkill("Java");
-		user1.AddSkill("C++");
-		user2.AddSkill("HTML");
+		user1.addSkill("Java");
+		user1.addSkill("C++");
+		user2.addSkill("HTML");
 		
 		assertEqual(2, card user1.Skills);
 		assertEqual(1, card user2.Skills);
@@ -117,14 +121,14 @@ operations
 		dcl user1: Employee := hokify.getUserByName("Sara");
 		dcl user2: Employee := hokify.getUserByName("Rita");
 		
-		user1.AddLocation("Porto");
-		user2.AddLocation("Lisboa");
+		user1.addLocation("Porto");
+		user2.addLocation("Lisboa");
 		
 		assertTrue(user1.Location <> user2.Location);
 		assertEqual("Porto", user1.Location);
 		assertEqual("Lisboa", user2.Location);
 		
-		user2.AddLocation("Porto");
+		user2.addLocation("Porto");
 		assertEqual("Porto",user2.Location);
 	);
 	
@@ -134,8 +138,8 @@ operations
 		dcl user1: Employee := hokify.getUserByName("Sara");
 		dcl user2: Employee := hokify.getUserByName("Rita");
 		
-		user1.CreateCV("Nome: Sara Santos Morada: Rua Testes"); 
-		user2.CreateCV("Nome: Rita Torres Morada: Rua Teste Emprego: ....");
+		user1.createCV("Nome: Sara Santos Morada: Rua Testes"); 
+		user2.createCV("Nome: Rita Torres Morada: Rua Teste Emprego: ....");
 		
 		assertTrue(user1.CV <> "");
 		assertTrue(user2.CV <> "");
@@ -180,8 +184,8 @@ operations
 	--Test Change Job Location
 	private testChangeJobLocation: () ==> ()
 	testChangeJobLocation() == (
-		job1.ChangeLocation("Maia");
-		job2.ChangeLocation("Lisboa");
+		job1.changeLocation("Maia");
+		job2.changeLocation("Lisboa");
 		
 		assertEqual("Maia", job1.getLocation());
 		assertEqual("Lisboa", job2.getLocation());
@@ -190,8 +194,8 @@ operations
 	--Test Change Job Type
 	private testChangeJobType: () ==> ()
 	testChangeJobType() == (
-		job1.ChangeType(<PartTime>);
-		job2.ChangeType(<FullTime>);
+		job1.changeType(<PartTime>);
+		job2.changeType(<FullTime>);
 		
 		assertEqual(<PartTime>, job1.getType());
 		assertEqual(<FullTime>, job2.getType());
@@ -200,11 +204,21 @@ operations
 	--Test Change Job Description
 	private testChangeJobDescription: () ==> ()
 	testChangeJobDescription() == (
-		job1.ChangeDescription("Vaga para programador em HTML e CSS");
-		job2.ChangeDescription("Vaga para programador em multiplas linguagens a tempo inteiro");
+		job1.changeDescription("Vaga para programador em HTML e CSS");
+		job2.changeDescription("Vaga para programador em multiplas linguagens a tempo inteiro");
 		
 		assertEqual("Vaga para programador em HTML e CSS", job1.getDescription());
 		assertEqual("Vaga para programador em multiplas linguagens a tempo inteiro", job2.getDescription());
+	);
+	
+	--Test Change Name
+	private testChangeName: () ==> ()
+	testChangeName() == (
+		employee1.changeName("Sara Santos");
+		employer1.changeName("Luis Soares");
+		
+		assertEqual("Sara Santos", employee1.Name);
+		assertEqual("Luis Soares", employer1.Name);
 	);
 	
 	
@@ -217,7 +231,7 @@ operations
 	testFailAddInterest() == (
 		dcl user1: Employee := new Employee("Test");
 		
-		user1.AddInterest("");
+		user1.addInterest("");
 	);
 	
 	--Test add a repeated interest
@@ -225,9 +239,78 @@ operations
 	testAddRepeatedInterest() == (
 		dcl user1: Employee := new Employee("Test");
 		
-		user1.AddInterest("I1");
-		user1.AddInterest("I1");
+		user1.addInterest("I1");
+		user1.addInterest("I1");
 	);
+	
+	--Test repeated skill
+	public testAddRepeatedSkill: () ==> ()
+	testAddRepeatedSkill() == (
+		employee1.addSkill("Web");
+		employee1.addSkill("Web");
+	);
+	
+	--Test skill equals to ""
+	public testAddFailSkill: () ==> ()
+	testAddFailSkill() == (
+		employee1.addSkill("");
+	);
+	
+	--Test fail change/update location
+	public testFailChangeLocation: () ==> ()
+	testFailChangeLocation() == (
+		employee1.addLocation("");
+	);
+	
+	--Test fail create/update CV
+	public testFailCreateCV: () ==> ()
+	testFailCreateCV() == (
+		employee1.createCV("");
+	);
+	
+	--Test fail update user info
+	public testFailUpdateUser: () ==> ()
+	testFailUpdateUser() == (
+		employee1.changeName("");
+	);
+	
+	--Test fail create Job
+	-- name = ""
+	public testFailCreateJobName: () ==> ()
+	testFailCreateJobName() == (
+	 	dcl job1: Job;
+		job1 := new Job("", {"HTML"}, {"Programação","Web"},"Porto", <FullTime>, "Vaga para programador em HTML");
+	);
+	--location = ""
+	public testFailCreateJobLocation: () ==> ()
+	testFailCreateJobLocation() == (
+		dcl job1: Job;
+		job1 := new Job("Programador HTML", {"HTML"}, {"Programação","Web"},"", <FullTime>, "Vaga para programador em HTML");
+	);
+	--description = ""
+	public testFailCreateJobDescription: () ==> ()
+	testFailCreateJobDescription() == (
+		dcl job1: Job;
+		job1 := new Job("Programador HTML", {"HTML"}, {"Programação","Web"},"Porto", <FullTime>, "");
+	);
+	--user not in users
+	public testFailCreateJobUser: () ==> ()
+	testFailCreateJobUser() == (
+		dcl job1: Job := new Job("Programador HTML", {"HTML"}, {"Programação","Web"},"Porto", <FullTime>, "Vaga para programador em HTML");
+		dcl user1: Employer := new Employer("Test");
+		hokify.addJob(user1,job1);
+	);
+	--repeted job
+	public testFailCreateRepeatedJob: () ==> ()
+	testFailCreateRepeatedJob() == (
+		dcl job1: Job := new Job("Programador HTML", {"HTML"}, {"Programação","Web"},"Porto", <FullTime>, "Vaga para programador em HTML");
+		dcl user1: Employer := new Employer("Test");
+		hokify.createUser(user1);
+		hokify.addJob(user1,job1);
+		hokify.addJob(user1,job1);
+	);
+	
+	
 	
 functions
 -- TODO Define functiones here

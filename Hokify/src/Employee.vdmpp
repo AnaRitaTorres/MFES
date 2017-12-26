@@ -19,35 +19,42 @@ instance variables
  	CV = "";
 
 	--Add an interest 
-	public AddInterest: seq of char ==> ()
-	AddInterest(interest) == (
+	public addInterest: seq of char ==> ()
+	addInterest(interest) == (
 		Interests := Interests union {interest};
 	)
 	pre (interest not in set Interests) and interest <> ""
 	post Interests = Interests~ union {interest};
 	
 	--Add a skill
-	public AddSkill: seq of char ==> ()
-	AddSkill(skill) == (
+	public addSkill: seq of char ==> ()
+	addSkill(skill) == (
 		Skills := Skills union {skill};
 	)
 	pre (skill not in set Skills) and skill <> ""
 	post Skills = Skills~ union {skill};
 	
 	--Add or Change location
-	public AddLocation: seq of char ==> ()
-	AddLocation(location) == (
+	public addLocation: seq of char ==> ()
+	addLocation(location) == (
 		Location := location;
 	)
-	pre location <> "" and location <> Location
+	pre location <> ""
 	post Location = location;
 	
 	--Create CV
-	public CreateCV: seq of char ==> ()
-	CreateCV(cv) == (
+	public createCV: seq of char ==> ()
+	createCV(cv) == (
 		CV := cv;
 	)
 	pre cv <> ""
 	post CV = cv;
+	
+	--Change name
+	public changeName: seq of char ==> ()
+	changeName(name) == (
+		Name := name;
+	)
+	pre name <> "";
 	
 end Employee

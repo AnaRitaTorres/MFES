@@ -2,11 +2,19 @@ class User
 instance variables
   public Name:seq of (char) := "";
 
-operations 
+operations
+	--Create User 
 	public User: seq of char ==> User
 	User(name) == (
 		Name := name;
 	)
 	post Name = name;
 	
+	--Change Name
+	public changeName: seq of char ==> ()
+	changeName(name) == (
+		Name := name;
+	)
+	pre name <> ""
+	post Name = name;
 end User

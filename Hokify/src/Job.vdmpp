@@ -22,6 +22,10 @@ operations
 		Type := type;
 		Description := description;
 	)
+	pre name <> "" and
+	location <> "" and
+	(type = <FullTime> or type = <PartTime>) and
+	description <> ""
 	post Name = name and
 	Skills = skills and
 	Areas = areas and
@@ -46,24 +50,24 @@ operations
 	post Areas = Areas~ union {area};
 	
 	--Change  Location
-	public ChangeLocation: seq of char ==> ()
-	ChangeLocation(location) == (
+	public changeLocation: seq of char ==> ()
+	changeLocation(location) == (
 		Location := location;
 	)
-	pre location <> "" and location <> Location
+	pre location <> "" 
 	post Location = location;
 	
 	--Change Type
-	public ChangeType: JobType ==> ()
-	ChangeType(type) == (
+	public changeType: JobType ==> ()
+	changeType(type) == (
 		Type := type;
 	)
 	pre type = <FullTime> or type = <PartTime>
 	post Type = type;
 	
 	--Change description
-	public ChangeDescription: seq of char ==> ()
-	ChangeDescription(description) == (
+	public changeDescription: seq of char ==> ()
+	changeDescription(description) == (
 		Description := description;
 	)
 	pre Description <> description and description <> ""

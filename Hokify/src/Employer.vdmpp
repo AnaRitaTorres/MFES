@@ -12,11 +12,18 @@ class Employer is subclass of User
 		post Name = name;
 		
 		--Adds new Job
-		public AddJob: Job ==> ()
-		AddJob(job) == (
+		public addJob: Job ==> ()
+		addJob(job) == (
 			jobs := jobs union {job}
 		)
 		pre job not in set jobs
 		post jobs = jobs~ union {job};
+		
+		--Change name
+		public changeName: seq of char ==> ()
+		changeName(name) == (
+			Name := name;
+		)
+		pre name <> "";
 		
 end Employer

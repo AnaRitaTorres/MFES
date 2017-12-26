@@ -29,7 +29,7 @@ operations
 	--Adds a new Job
 	public addJob: Employer * Job ==> ()
 	addJob(user, job) == (
-	 user.AddJob(job);
+	 user.addJob(job);
 	 jobs := jobs union {job};
 	)
 	pre user in set users and job not in set jobs
