@@ -35,4 +35,24 @@ operations
 	pre user in set users and job not in set jobs
 	post jobs = jobs~ union {job};
 	
+	--Delete Job
+	public deleteJob: Employer * Job ==> ()
+	deleteJob(user, job) == (
+		user.deleteJob(job);
+		jobs := jobs \ {job}; 
+	)
+	pre user in set users and job in set jobs
+	post jobs = jobs~ \ {job};
+	
+	--Delete User
+	public deleteUser: User ==> ()
+	deleteUser(user) == (
+		if is_Employer(user)
+		then
+		for all job in set user.jobs
+		do jobs := jobs \ {job};
+		
+		users := users \ {user};
+	);
+	
 end Hokify

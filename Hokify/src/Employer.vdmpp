@@ -26,4 +26,12 @@ class Employer is subclass of User
 		)
 		pre name <> "";
 		
+		--Delete Job
+		public deleteJob: Job ==> ()
+		deleteJob(job) == (
+			jobs := jobs \ {job};
+		)
+		pre job in set jobs
+		post jobs = jobs~ \ {job};
+		
 end Employer

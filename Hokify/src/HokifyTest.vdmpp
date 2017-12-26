@@ -11,6 +11,7 @@ instance variables
 	
 	job1: Job := new Job("Programador HTML", {"HTML"}, {"Programação","Web"},"Porto", <FullTime>, "Vaga para programador em HTML");
 	job2: Job := new Job("Programador Versátil", {"Java","C++"}, {"Programação"},"Porto", <PartTime>, "Vaga para programador em multiplas linguagens");
+	job3: Job := new Job("Designer", {"CSS"}, {"Programação","Design"},"Lisboa", <PartTime>, "Vaga design");
 	
 	--Instance of the application
   public static hokify: Hokify := new Hokify();
@@ -67,6 +68,14 @@ operations
 		
 		IO`print("Test Change User Name => ");
 		test.testChangeName();
+		IO`println("Passed");
+		
+		IO`print("Test Delete Job => ");
+		test.testDeleteJob();
+		IO`println("Passed");
+		
+		IO`print("Test Delete User => ");
+		test.testDeleteUser();
 		IO`println("Passed");
 	);
 	
@@ -154,11 +163,12 @@ operations
 		
 		hokify.addJob(user1,job1);
 		hokify.addJob(user2, job2);
+		hokify.addJob(user1,job3);
 		
-		assertEqual(2, card hokify.jobs);
-		assertEqual({job1,job2}, hokify.jobs);
-		assertEqual(1, card user1.jobs);
-		assertEqual(1, card user1.jobs);
+		assertEqual(3, card hokify.jobs);
+		assertEqual({job1,job2,job3}, hokify.jobs);
+		assertEqual(2, card user1.jobs);
+		assertEqual(1, card user2.jobs);
 	);
 	
 	--Test Add Job Skill
@@ -215,12 +225,32 @@ operations
 	private testChangeName: () ==> ()
 	testChangeName() == (
 		employee1.changeName("Sara Santos");
-		employer1.changeName("Luis Soares");
+		employer1.changeName("Ana Soares");
 		
 		assertEqual("Sara Santos", employee1.Name);
-		assertEqual("Luis Soares", employer1.Name);
+		assertEqual("Ana Soares", employer1.Name);
 	);
 	
+	
+	--Test delete job
+	private testDeleteJob: () ==> ()
+	testDeleteJob() == (		
+		hokify.deleteJob(employer1,job1);
+		
+		assertEqual(2, card hokify.jobs);
+		assertEqual(1, card employer1.jobs);
+		assertEqual({job3}, employer1.jobs);
+		assertEqual({job2,job3}, hokify.jobs);
+	);
+	
+	--Test delete user
+	private testDeleteUser: () ==> ()
+	testDeleteUser() == (
+		hokify.deleteUser(employer1);
+		
+		assertEqual(3, card hokify.users);
+		assertEqual(1, card hokify.jobs);
+	);
 	
 	/*
 	 TESTING EXCEPTIONS
