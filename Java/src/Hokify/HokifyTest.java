@@ -14,15 +14,15 @@ public class HokifyTest extends MyTestCase {
       new Job(
           "Programador HTML",
           SetUtil.set("HTML"),
-          SetUtil.set("Programação", "Web"),
+          SetUtil.set("Programa��o", "Web"),
           "Porto",
           FullTimeQuote.getInstance(),
           "Vaga para programador em HTML");
   private Job job2 =
       new Job(
-          "Programador Versátil",
+          "Programador Vers�til",
           SetUtil.set("Java", "C++"),
-          SetUtil.set("Programação"),
+          SetUtil.set("Programa��o"),
           "Porto",
           PartTimeQuote.getInstance(),
           "Vaga para programador em multiplas linguagens");
@@ -30,9 +30,9 @@ public class HokifyTest extends MyTestCase {
       new Job(
           "Designer",
           SetUtil.set("CSS"),
-          SetUtil.set("Programação", "Design"),
+          SetUtil.set("Programa��o", "Design"),
           "Lisboa",
-           PartTimeQuote.getInstance(),
+          PartTimeQuote.getInstance(),
           "Vaga design");
   public static Hokify hokify = new Hokify();
 
@@ -75,6 +75,9 @@ public class HokifyTest extends MyTestCase {
     IO.print("Test Change User Name => ");
     test.testChangeName();
     IO.println("Passed");
+    IO.print("Test Apply for Job => ");
+    test.testApply();
+    IO.println("Passed");
     IO.print("Test Delete Job => ");
     test.testDeleteJob();
     IO.println("Passed");
@@ -95,11 +98,11 @@ public class HokifyTest extends MyTestCase {
 
   private void testAddInterest() {
 
-    Employee user1 = (Employee) hokify.getUserByName("Sara");
-    Employee user2 = (Employee) hokify.getUserByName("Rita");
-    user1.addInterest("Programação");
+    Employee user1 = (Employee)hokify.getUserByName("Sara");
+    Employee user2 =  (Employee)hokify.getUserByName("Rita");
+    user1.addInterest("Programa��o");
     user1.addInterest("Web");
-    user2.addInterest("Programação");
+    user2.addInterest("Programa��o");
     user2.addInterest("Web");
     user2.addInterest("Design");
     assertEqual(2L, user1.Interests.size());
@@ -108,8 +111,8 @@ public class HokifyTest extends MyTestCase {
 
   private void testAddSkills() {
 
-    Employee user1 = (Employee) hokify.getUserByName("Sara");
-    Employee user2 = (Employee) hokify.getUserByName("Rita");
+    Employee user1 =  (Employee)hokify.getUserByName("Sara");
+    Employee user2 =  (Employee)hokify.getUserByName("Rita");
     user1.addSkill("Java");
     user1.addSkill("C++");
     user2.addSkill("HTML");
@@ -119,8 +122,8 @@ public class HokifyTest extends MyTestCase {
 
   private void testAddLocation() {
 
-    Employee user1 = (Employee) hokify.getUserByName("Sara");
-    Employee user2 = (Employee) hokify.getUserByName("Rita");
+    Employee user1 =  (Employee)hokify.getUserByName("Sara");
+    Employee user2 =  (Employee)hokify.getUserByName("Rita");
     user1.addLocation("Porto");
     user2.addLocation("Lisboa");
     assertTrue(!(Utils.equals(user1.Location, user2.Location)));
@@ -132,8 +135,8 @@ public class HokifyTest extends MyTestCase {
 
   private void testAddCV() {
 
-    Employee user1 = (Employee) hokify.getUserByName("Sara");
-    Employee user2 = (Employee) hokify.getUserByName("Rita");
+    Employee user1 =  (Employee)hokify.getUserByName("Sara");
+    Employee user2 =  (Employee)hokify.getUserByName("Rita");
     user1.createCV("Nome: Sara Santos Morada: Rua Testes");
     user2.createCV("Nome: Rita Torres Morada: Rua Teste Emprego: ....");
     assertTrue(!(Utils.equals(user1.CV, "")));
@@ -143,8 +146,8 @@ public class HokifyTest extends MyTestCase {
 
   private void testAddJob() {
 
-    Employer user1 = (Employer) hokify.getUserByName("Ana");
-    Employer user2 = (Employer) hokify.getUserByName("Luis");
+    Employer user1 =  (Employer)hokify.getUserByName("Ana");
+    Employer user2 =  (Employer)hokify.getUserByName("Luis");
     HokifyTest.hokify.addJob(user1, job1);
     HokifyTest.hokify.addJob(user2, job2);
     HokifyTest.hokify.addJob(user1, job3);
@@ -152,6 +155,9 @@ public class HokifyTest extends MyTestCase {
     assertEqual(SetUtil.set(job1, job2, job3), hokify.jobs);
     assertEqual(2L, user1.jobs.size());
     assertEqual(1L, user2.jobs.size());
+    assertEqual(job1, hokify.getJobById(1L));
+    assertEqual(job2, hokify.getJobById(2L));
+    assertEqual(job3, hokify.getJobById(3L));
   }
 
   private void testAddJobSkill() {
@@ -166,8 +172,8 @@ public class HokifyTest extends MyTestCase {
 
     job1.addArea("Engenharia");
     job2.addArea("Engenharia");
-    assertEqual(SetUtil.set("Engenharia", "Programação", "Web"), job1.getAreas());
-    assertEqual(SetUtil.set("Engenharia", "Programação"), job2.getAreas());
+    assertEqual(SetUtil.set("Engenharia", "Programa��o", "Web"), job1.getAreas());
+    assertEqual(SetUtil.set("Engenharia", "Programa��o"), job2.getAreas());
   }
 
   private void testChangeJobLocation() {
@@ -191,7 +197,8 @@ public class HokifyTest extends MyTestCase {
     job1.changeDescription("Vaga para programador em HTML e CSS");
     job2.changeDescription("Vaga para programador em multiplas linguagens a tempo inteiro");
     assertEqual("Vaga para programador em HTML e CSS", job1.getDescription());
-    assertEqual("Vaga para programador em multiplas linguagens a tempo inteiro", job2.getDescription());
+    assertEqual(
+        "Vaga para programador em multiplas linguagens a tempo inteiro", job2.getDescription());
   }
 
   private void testChangeName() {
@@ -213,10 +220,19 @@ public class HokifyTest extends MyTestCase {
 
   private void testDeleteUser() {
 
-    HokifyTest.hokify.deleteUser(employer1);
     HokifyTest.hokify.deleteUser(employee1);
+    assertEqual(1L, hokify.applications.size());
+    HokifyTest.hokify.deleteUser(employer2);
+    assertEqual(0L, hokify.applications.size());
     assertEqual(2L, hokify.users.size());
     assertEqual(1L, hokify.jobs.size());
+  }
+
+  private void testApply() {
+
+    HokifyTest.hokify.apply(employee2, job2);
+    HokifyTest.hokify.apply(employee1, job2);
+    assertEqual(2L, hokify.applications.size());
   }
 
   public void testFailAddInterest() {
@@ -264,10 +280,10 @@ public class HokifyTest extends MyTestCase {
     job1_1 =
         new Job(
             "",
-             SetUtil.set("HTML"),
-             SetUtil.set("Programação", "Web"),
+            SetUtil.set("HTML"),
+            SetUtil.set("Programa��o", "Web"),
             "Porto",
-             FullTimeQuote.getInstance(),
+            FullTimeQuote.getInstance(),
             "Vaga para programador em HTML");
   }
 
@@ -278,7 +294,7 @@ public class HokifyTest extends MyTestCase {
         new Job(
             "Programador HTML",
             SetUtil.set("HTML"),
-            SetUtil.set("Programação", "Web"),
+            SetUtil.set("Programa��o", "Web"),
             "",
             FullTimeQuote.getInstance(),
             "Vaga para programador em HTML");
@@ -291,9 +307,9 @@ public class HokifyTest extends MyTestCase {
         new Job(
             "Programador HTML",
             SetUtil.set("HTML"),
-            SetUtil.set("Programação", "Web"),
+            SetUtil.set("Programa��o", "Web"),
             "Porto",
-             FullTimeQuote.getInstance(),
+            FullTimeQuote.getInstance(),
             "");
   }
 
@@ -303,9 +319,9 @@ public class HokifyTest extends MyTestCase {
         new Job(
             "Programador HTML",
             SetUtil.set("HTML"),
-            SetUtil.set("Programação", "Web"),
+            SetUtil.set("Programa��o", "Web"),
             "Porto",
-             FullTimeQuote.getInstance(),
+            FullTimeQuote.getInstance(),
             "Vaga para programador em HTML");
     Employer user1 = new Employer("Test");
     HokifyTest.hokify.addJob(user1, job1);
@@ -317,9 +333,9 @@ public class HokifyTest extends MyTestCase {
         new Job(
             "Programador HTML",
             SetUtil.set("HTML"),
-            SetUtil.set("Programação", "Web"),
+            SetUtil.set("Programa��o", "Web"),
             "Porto",
-             FullTimeQuote.getInstance(),
+            FullTimeQuote.getInstance(),
             "Vaga para programador em HTML");
     Employer user1 = new Employer("Test");
     HokifyTest.hokify.createUser(user1);
