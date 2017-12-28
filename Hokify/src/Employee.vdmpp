@@ -56,5 +56,5 @@ instance variables
 		Name := name;
 	)
 	pre name <> "";
-	
+		
 end Employee

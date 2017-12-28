@@ -1,13 +1,14 @@
 class Hokify
 instance variables
-  public users:set of (User) := {};
-  public jobs:set of (Job) := {};
+  public users: set of (User) := {};
+  public jobs: set of (Job) := {};
+  public applications: set of (Application) := {};
 
 operations
   --Creates a new instance of Hokify
 	public Hokify: () ==> Hokify
 	Hokify() == return self
-	post users = {} and jobs = {};
+	post users = {} and jobs = {} and applications = {};
 	
 	--Adds a new User
 	public createUser: User ==> ()
@@ -38,6 +39,7 @@ operations
 	--Delete Job
 	public deleteJob: Employer * Job ==> ()
 	deleteJob(user, job) == (
+		deleteJobApplications(job);
 		user.deleteJob(job);
 		jobs := jobs \ {job}; 
 	)
@@ -48,16 +50,58 @@ operations
 	public deleteUser: Employer ==> ()
 	deleteUser(user) == (
 		for all job in set user.jobs
-		do jobs := jobs \ {job};
+		do (
+		deleteJobApplications(job);
+		jobs := jobs \ {job});
 		
 		users := users \ {user};
 	);
 	
 	--Delete Employee
 	public deleteUser: Employee ==> ()
-	deleteUser(user) == (		
-		users := users \ {user};
+	deleteUser(user) == (
+	  deleteUserApplications(user);		
+		users := users \ {user};		
 	);
 	
+		--Apply for job
+	public apply: User * Job ==> () 
+	apply(user,job) == (
+		dcl application: Application := new Application(user,job);
+		if application not in set applications
+		then applications := applications union {application};
+	)
+	pre is_Employee(user) and user in set users;
+	
+	--Delete all jobs applications
+	public deleteJobApplications: Job ==> ()
+	deleteJobApplications(job) == (
+		for all application in set applications
+		do 
+		if application.getJob() = job 
+		then applications := applications \ {application};
+	
+	);
+	
+	--Delete all user applications
+	public deleteUserApplications: Employee ==> ()
+	deleteUserApplications(user) == (
+		for all application in set applications
+		do
+		if application.getUser() = user
+		then applications := applications \ {application};
+	);
+	
+	--Get job by id
+	public getJobById: int ==> Job
+	getJobById(id) == (
+		dcl j: Job;
+		for all job in set jobs
+		do
+		if job.id = id
+		then j:= job;
+		
+		return j;
+	);
 	
 end Hokify

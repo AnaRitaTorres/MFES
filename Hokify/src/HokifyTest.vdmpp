@@ -69,6 +69,10 @@ operations
 		IO`print("Test Change User Name => ");
 		test.testChangeName();
 		IO`println("Passed");
+				
+		IO`print("Test Apply for Job => ");
+		test.testApply();
+		IO`println("Passed");	
 		
 		IO`print("Test Delete Job => ");
 		test.testDeleteJob();
@@ -76,7 +80,7 @@ operations
 		
 		IO`print("Test Delete User => ");
 		test.testDeleteUser();
-		IO`println("Passed");
+		IO`println("Passed");			
 	);
 	
 	--Test Create Users
@@ -169,6 +173,9 @@ operations
 		assertEqual({job1,job2,job3}, hokify.jobs);
 		assertEqual(2, card user1.jobs);
 		assertEqual(1, card user2.jobs);
+		assertEqual(job1, hokify.getJobById(1));
+		assertEqual(job2, hokify.getJobById(2));
+		assertEqual(job3, hokify.getJobById(3));
 	);
 	
 	--Test Add Job Skill
@@ -246,11 +253,23 @@ operations
 	--Test delete user
 	private testDeleteUser: () ==> ()
 	testDeleteUser() == (
-		hokify.deleteUser(employer1);
 		hokify.deleteUser(employee1);
-		
+		assertEqual(1, card hokify.applications);
+			
+		hokify.deleteUser(employer2);
+		assertEqual(0, card hokify.applications);
+				
 		assertEqual(2, card hokify.users);
 		assertEqual(1, card hokify.jobs);		
+	);
+	
+	--Test apply for job
+	private testApply: () ==> ()
+	testApply() == (
+		hokify.apply(employee2,job2);
+		hokify.apply(employee1,job2);
+		
+		assertEqual(2, card hokify.applications);
 	);
 	
 	/*

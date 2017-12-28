@@ -4,13 +4,16 @@ types
 	public JobType= <FullTime> | <PartTime>;
 	
 instance variables
+	public static ID: int := 1;
+
   Name:seq of (char) := "";
   Skills: set of (seq of char) := {};
   Areas: set of (seq of char) := {};
   Location:seq of (char) := "";
   Type: JobType := <FullTime>;
   Description:seq of (char) := "";
-  
+  public id: int := ID;
+     
 operations 
 	--Create a new Job
 	public Job: seq of (char) * set of (seq of char) * set of (seq of char) * seq of (char) * JobType * seq of (char) ==> Job
@@ -21,6 +24,7 @@ operations
 		Location := location;
 		Type := type;
 		Description := description;
+		ID := ID + 1;
 	)
 	pre name <> "" and
 	location <> "" and
@@ -31,7 +35,8 @@ operations
 	Areas = areas and
 	Location = location and
 	Description = description and 
-	Type = type;
+	Type = type and
+	id <> 0;
 	
 	--Add skill
 	public addSkill: seq of char ==> ()
@@ -102,5 +107,5 @@ operations
 	getDescription() == (
 	 return Description;
 	);
-
+		
 end Job

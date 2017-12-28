@@ -2,4 +2,22 @@ class Application
 	instance variables
 		user: User;
 		job: Job;
+		
+	operations
+		--Create application
+		public Application: User * Job ==> Application
+		Application(u, j) == (
+			user := u;
+			job := j; 
+		)
+		post user = u and job = j;
+		
+		--Get user
+		public getUser: () ==> Employee
+		getUser() == return user;
+		
+		--Get job
+		public getJob: () ==> Job
+		getJob() == return job;
+		
 end Application
