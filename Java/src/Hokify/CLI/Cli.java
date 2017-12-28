@@ -1,6 +1,7 @@
 package Hokify.CLI;
 
 import Hokify.*;
+import Hokify.quotes.FullTimeQuote;
 import Hokify.quotes.PartTimeQuote;
 import org.overture.codegen.runtime.VDMSet;
 
@@ -72,7 +73,7 @@ public class Cli {
         isEmployee = hokify.getUserByName(user).getClass().equals(Employee.class);
 
         if(isEmployee || isEmployer) {
-            System.out.println("USER\n");
+            System.out.println("\nUSER\n");
             System.out.println("1.Create User");
             System.out.println("2.List Users");
             System.out.println("3.Search");
@@ -91,6 +92,19 @@ public class Cli {
             case 0:
                 mainMenu();
                 break;
+            case 1:
+                createUserMenu();
+                break;
+            case 2:
+                break;
+            case 3:
+                break;
+            case 4:
+                break;
+            case 5:
+                break;
+            case 6:
+                break;
             default:
                 break;
         }
@@ -106,7 +120,7 @@ public class Cli {
         isEmployee = hokify.getUserByName(user).getClass().equals(Employee.class);
 
         if(isEmployee || isEmployer) {
-            System.out.println("JOB\n");
+            System.out.println("\nJOB\n");
             System.out.println("1.List Jobs");
             System.out.println("2.Search");
             System.out.println("3.Apply For a Job");
@@ -125,16 +139,28 @@ public class Cli {
             case 0:
                 mainMenu();
                 break;
+            case 1:
+                break;
+            case 2:
+                break;
+            case 3:
+                break;
+            case 4:
+                createJobMenu(user);
+                break;
+            case 5:
+                break;
+            case 6:
+                break;
             default:
                 break;
-
         }
 
     }
 
     public String askUser(){
 
-        System.out.println("User?\n");
+        System.out.println("\nUser?\n");
 
         Scanner scanner = new Scanner(System.in);
         String user = scanner.nextLine();
@@ -142,23 +168,64 @@ public class Cli {
         return user;
     }
 
-     public boolean isEmployer(){
-
-        System.out.println("User?\n");
+    public void createUserMenu(){
 
         Scanner scanner = new Scanner(System.in);
-        String user = scanner.nextLine();
 
-        return hokify.getUserByName(user).getClass().equals(Employer.class);
+        System.out.println("\nCreate User\n");
+        System.out.println("Employer(1) or Employee(2)?");
+
+
+        int type = scanner.nextInt();
+
+        System.out.println("Name?");
+        String name = scanner.nextLine();
+
+
+
     }
 
-    public boolean isEmployee(){
-
-        System.out.println("User?\n");
+    public void createJobMenu(String user){
 
         Scanner scanner = new Scanner(System.in);
-        String user = scanner.nextLine();
+        Job job = null;
+        System.out.println("\nCreate Job:\n");
 
-        return hokify.getUserByName(user).getClass().equals(Employee.class);
+        System.out.println("Job Name?\n");
+        String name = scanner.nextLine();
+
+        System.out.println("\nSkills?(separated by commas)\n");
+        String skills = scanner.nextLine();
+        String[] skill = skills.split(",");
+        VDMSet jobSkills = new VDMSet();
+
+        for(int i=0; i < skill.length; i++){
+            jobSkills.add(skill[i]);
+        }
+
+        System.out.println("\nAreas?(separated by commas)\n");
+        String areas = scanner.nextLine();
+        String[] area = areas.split(",");
+        VDMSet jobAreas = new VDMSet();
+        for(int i=0; i < area.length; i++){
+            jobAreas.add(area[i]);
+        }
+
+        System.out.println("\nLocation?\n");
+        String location = scanner.nextLine();
+
+        System.out.println("\nDescription?\n");
+        String description = scanner.nextLine();
+
+        System.out.println("\nFull-Time(1) or Part-Time(2)?\n");
+        int type = scanner.nextInt();
+        if(type == 1){
+            job = new Job(name,jobSkills,jobAreas,location,FullTimeQuote.getInstance(),description);
+        }
+        else if(type == 2){
+            job = new Job(name,jobSkills,jobAreas,location,PartTimeQuote.getInstance(),description);
+        }
+
+        hokify.addJob((Employer) hokify.getUserByName(user),job);
     }
 }
