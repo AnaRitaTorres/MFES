@@ -4,15 +4,16 @@ import java.util.*;
 import org.overture.codegen.runtime.*;
 import Hokify.quotes.*;
 
-
 @SuppressWarnings("all")
 public class Job {
+  public static Number ID = 1L;
   private String Name = "";
   private VDMSet Skills = SetUtil.set();
   private VDMSet Areas = SetUtil.set();
   private String Location = "";
   private Object Type = FullTimeQuote.getInstance();
   private String Description = "";
+  public Number id = Job.ID;
 
   public void cg_init_Job_1(
       final String name,
@@ -28,6 +29,7 @@ public class Job {
     Location = location;
     Type = type;
     Description = description;
+    ID = Job.ID.longValue() + 1L;
   }
 
   public Job(
@@ -96,7 +98,9 @@ public class Job {
   public String toString() {
 
     return "Job{"
-        + "Name := "
+        + "ID := "
+        + Utils.toString(ID)
+        + ", Name := "
         + Utils.toString(Name)
         + ", Skills := "
         + Utils.toString(Skills)
@@ -108,6 +112,8 @@ public class Job {
         + Utils.toString(Type)
         + ", Description := "
         + Utils.toString(Description)
+        + ", id := "
+        + Utils.toString(id)
         + "}";
   }
 }
