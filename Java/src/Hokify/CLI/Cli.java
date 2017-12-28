@@ -188,18 +188,19 @@ public class Cli {
         System.out.println("Name?");
         String name = scanner.nextLine();
 
-        System.out.println("Skills?");
-        String skills = scanner.nextLine();
-        String[] skill = skills.split(",");
-
-        System.out.println("Location?");
-        String location = scanner.nextLine();
-
         if(type == 1){
 
-            //TODO:employer
+            Employer e = new Employer(name);
+            hokify.createUser(e);
         }
         else if(type == 2){
+
+            System.out.println("Skills?");
+            String skills = scanner.nextLine();
+            String[] skill = skills.split(",");
+
+            System.out.println("Location?");
+            String location = scanner.nextLine();
 
             System.out.println("Interests?");
             String interests = scanner.nextLine();
@@ -216,11 +217,17 @@ public class Cli {
             }
 
             e.addLocation(location);
+            hokify.createUser(e);
 
         }
         else{
             System.out.println("Insert a valid type.");
         }
+
+        System.out.println("User was created!");
+         //TODO:For Testing Purposes
+        System.out.println(hokify.users);
+
     }
 
     public void editUserMenu(String user){
