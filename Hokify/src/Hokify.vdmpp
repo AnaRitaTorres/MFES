@@ -44,15 +44,20 @@ operations
 	pre user in set users and job in set jobs
 	post jobs = jobs~ \ {job};
 	
-	--Delete User
-	public deleteUser: User ==> ()
+	--Delete Employer
+	public deleteUser: Employer ==> ()
 	deleteUser(user) == (
-		if is_Employer(user)
-		then
 		for all job in set user.jobs
 		do jobs := jobs \ {job};
 		
 		users := users \ {user};
 	);
+	
+	--Delete Employee
+	public deleteUser: Employee ==> ()
+	deleteUser(user) == (		
+		users := users \ {user};
+	);
+	
 	
 end Hokify

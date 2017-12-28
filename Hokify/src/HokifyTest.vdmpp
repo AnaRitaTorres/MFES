@@ -247,9 +247,10 @@ operations
 	private testDeleteUser: () ==> ()
 	testDeleteUser() == (
 		hokify.deleteUser(employer1);
+		hokify.deleteUser(employee1);
 		
-		assertEqual(3, card hokify.users);
-		assertEqual(1, card hokify.jobs);
+		assertEqual(2, card hokify.users);
+		assertEqual(1, card hokify.jobs);		
 	);
 	
 	/*
@@ -339,8 +340,6 @@ operations
 		hokify.addJob(user1,job1);
 		hokify.addJob(user1,job1);
 	);
-	
-	
 	
 functions
 -- TODO Define functiones here
