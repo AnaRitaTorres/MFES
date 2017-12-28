@@ -5,6 +5,7 @@ import Hokify.quotes.FullTimeQuote;
 import Hokify.quotes.PartTimeQuote;
 import org.overture.codegen.runtime.VDMSet;
 
+import java.util.Iterator;
 import java.util.Scanner;
 
 import static Hokify.HokifyTest.hokify;
@@ -83,7 +84,7 @@ public class Cli {
         if (isEmployee) {
             System.out.println("6.List Employee Job Applications");
         }
-        System.out.println("0.Go Back");
+        System.out.println("0.Go Back\n");
 
         Scanner scanner = new Scanner(System.in);
         int i = scanner.nextInt();
@@ -130,7 +131,7 @@ public class Cli {
             System.out.println("5.Edit Job Information");
             System.out.println("6.Delete Job");
         }
-        System.out.println("0.Go Back");
+        System.out.println("0.Go Back\n");
 
         Scanner scanner = new Scanner(System.in);
         int i = scanner.nextInt();
@@ -149,6 +150,7 @@ public class Cli {
                 createJobMenu(user);
                 break;
             case 5:
+                editJobMenu(user);
                 break;
             case 6:
                 break;
@@ -160,10 +162,16 @@ public class Cli {
 
     public String askUser(){
 
-        System.out.println("\nUser?\n");
+        System.out.println("\nUser?");
 
         Scanner scanner = new Scanner(System.in);
         String user = scanner.nextLine();
+
+        while(hokify.getUserByName(user) == null){
+            System.out.println("The User inserted does not exist, try again");
+            System.out.println("User?");
+            user = scanner.nextLine();
+        }
 
         return user;
     }
@@ -180,6 +188,7 @@ public class Cli {
 
         System.out.println("Name?");
         String name = scanner.nextLine();
+
 
 
 
@@ -228,4 +237,19 @@ public class Cli {
 
         hokify.addJob((Employer) hokify.getUserByName(user),job);
     }
-}
+
+    public void editJobMenu(String user){
+
+        Employer emp = (Employer) hokify.getUserByName(user);
+
+        Iterator it = emp.jobs.iterator();
+        int i = 1;
+        while(it.hasNext()){
+            String[] job = it.next().toString().split(":=");
+            String[] name = job[1].split(",");
+            System.out.println(i+"."+  name[0].replaceAll("\\W+",""));
+            i++;
+        }
+
+
+    }}
