@@ -221,6 +221,45 @@ public class Cli {
         else{
             System.out.println("Insert a valid type.");
         }
+    }
+
+    public void editUserMenu(String user){
+
+        Scanner scanner = new Scanner(System.in);
+        boolean isEmployer = false, isEmployee = false;
+
+        isEmployer = hokify.getUserByName(user).getClass().equals(Employer.class);
+        isEmployee = hokify.getUserByName(user).getClass().equals(Employee.class);
+
+
+        System.out.println("\nEDIT USER INFORMATION:\n");
+        System.out.println("1.Update Name");
+        if(isEmployee){
+            System.out.println("2.Update Location");
+            System.out.println("3.Update Interests");
+            System.out.println("4.Update Skills");
+            System.out.println("5.Create/Update CV");
+        }
+        System.out.println("0.Go Back");
+
+        int i = scanner.nextInt();
+
+        switch(i){
+            case 0:
+                break;
+            case 1:
+                break;
+            case 2:
+                break;
+            case 3:
+                break;
+            case 4:
+                break;
+            case 5:
+                break;
+            default:
+                break;
+        }
 
     }
 
@@ -283,6 +322,7 @@ public class Cli {
 
     public void editJobMenu(String user) {
 
+        //TODO
         Scanner scanner = new Scanner(System.in);
         Employer emp = (Employer) hokify.getUserByName(user);
 
