@@ -185,6 +185,16 @@ public class Cli {
         return user;
     }
 
+    public int askJobId(){
+
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Insert Job ID:");
+        int i = scanner.nextInt();
+
+        return i;
+    }
+
     public void createUserMenu() {
 
         Scanner scanner = new Scanner(System.in);
@@ -385,10 +395,7 @@ public class Cli {
 
     public void jobApp(String user){
 
-        Scanner scanner = new Scanner(System.in);
-
-        System.out.println("Insert Job ID:");
-        int i = scanner.nextInt();
+        int i = askJobId();
 
         hokify.apply((Employee)hokify.getUserByName(user),hokify.getJobById(i));
 
@@ -463,46 +470,52 @@ public class Cli {
 
         int j = scanner.nextInt();
         scanner.nextLine();
+        int x;
 
         switch(j){
             case 0:
                 jobMenu();
                 break;
             case 1:
+                x = askJobId();
                 System.out.println("Add a New Skill:");
                 String skills = scanner.nextLine();
                 String[] skill = skills.split(",");
                 for(int z=0; z < skill.length; z++){
-                    hokify.getJobById(1).addSkill(skill[z]);
+                    hokify.getJobById(x).addSkill(skill[z]);
                 }
                 break;
             case 2:
+                x = askJobId();
                 System.out.println("Add a New Area:");
                 String areas = scanner.nextLine();
                 String[] area = areas.split(",");
                 for(int z=0; z < area.length; z++){
-                    hokify.getJobById(1).addArea(area[z]);
+                    hokify.getJobById(x).addArea(area[z]);
                 }
                 break;
             case 3:
+                x = askJobId();
                 System.out.println("Change Location:");
                 String location = scanner.nextLine();
-                hokify.getJobById(1).changeLocation(location);
+                hokify.getJobById(x).changeLocation(location);
                 break;
             case 4:
+                x = askJobId();
                 System.out.println("Change Type(full(1)/part(2)):");
                 int type = scanner.nextInt();
                 if(type==1){
-                    hokify.getJobById(1).changeType(FullTimeQuote.getInstance());
+                    hokify.getJobById(x).changeType(FullTimeQuote.getInstance());
                 }
                 else if(type==2){
-                    hokify.getJobById(1).changeType(PartTimeQuote.getInstance());
+                    hokify.getJobById(x).changeType(PartTimeQuote.getInstance());
                 }
                 break;
             case 5:
+                x = askJobId();
                 System.out.println("Change Description:");
                 String description = scanner.nextLine();
-                hokify.getJobById(1).changeDescription(description);
+                hokify.getJobById(x).changeDescription(description);
                 break;
             default:
                 break;
@@ -516,11 +529,9 @@ public class Cli {
 
     public void deleteJobMenu(String user){
 
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Job To Delete(ID):");
-        int delete = scanner.nextInt();
+        int x = askJobId();
 
-        hokify.deleteJob((Employer)hokify.getUserByName(user),hokify.getJobById(1));
+        hokify.deleteJob((Employer)hokify.getUserByName(user),hokify.getJobById(x));
 
         //TODO:For Testing Purposes
         System.out.println(hokify.jobs);
