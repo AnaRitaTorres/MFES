@@ -234,6 +234,7 @@ public class Cli {
 
             hokify.createUser(e);
 
+
         }
         else{
             System.out.println("Insert a valid type.");
@@ -243,6 +244,7 @@ public class Cli {
          //TODO:For Testing Purposes
         System.out.println(hokify.users);
 
+        returnMenu();
     }
 
     public void listUsers(){
@@ -260,6 +262,8 @@ public class Cli {
         while(it2.hasNext()){
             System.out.println(it2.next().toString());
         }
+
+        returnMenu();
     }
 
     public void editUserMenu(String user){
@@ -327,6 +331,8 @@ public class Cli {
 
         //TODO:For Testing Purposes
         System.out.println(hokify.getUserByName(user));
+
+        returnMenu();
     }
 
     public void deleteUserMenu(){
@@ -347,6 +353,8 @@ public class Cli {
 
         //TODO:For Testing Purposes
         System.out.println(hokify.users);
+
+        returnMenu();
     }
 
     public void  listEmployeJobApps(String user){
@@ -358,7 +366,10 @@ public class Cli {
         while(it.hasNext()){
             System.out.println(it.next().toString());
         }
+
+        returnMenu();
     }
+
     public void listJobs(){
 
         System.out.println("Jobs:");
@@ -368,6 +379,8 @@ public class Cli {
         while(it.hasNext()){
             System.out.println(it.next().toString());
         }
+
+        returnMenu();
     }
 
     public void jobApp(String user){
@@ -381,7 +394,10 @@ public class Cli {
 
         //TODO:For Testing Purposes
         System.out.println(hokify.applications);
+
+        returnMenu();
     }
+
     public void createJobMenu(String user) {
 
         Scanner scanner = new Scanner(System.in);
@@ -426,6 +442,8 @@ public class Cli {
 
         //TODO:For Testing Purposes
         System.out.println(hokify.jobs);
+
+        returnMenu();
     }
 
     public void editJobMenu(String user) {
@@ -492,6 +510,8 @@ public class Cli {
 
         //TODO:For Testing Purposes
         System.out.println(hokify.jobs);
+
+        returnMenu();
     }
 
     public void deleteJobMenu(String user){
@@ -504,5 +524,32 @@ public class Cli {
 
         //TODO:For Testing Purposes
         System.out.println(hokify.jobs);
+
+        returnMenu();
+    }
+
+    public void returnMenu(){
+
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("\n00.Main Menu");
+        System.out.println("01.User Menu");
+        System.out.println("02.Job Menu\n");
+
+        int i = scanner.nextInt();
+
+        switch (i){
+            case 00:
+                mainMenu();
+                break;
+            case 01:
+                userMenu();
+                break;
+            case 02:
+                jobMenu();
+                break;
+            default:
+                break;
+        }
     }
 }
