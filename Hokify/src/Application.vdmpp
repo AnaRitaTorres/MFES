@@ -1,7 +1,7 @@
 class Application
 	instance variables
-		user: User;
-		job: Job;
+		public user: User;
+		public job: Job;
 		
 	operations
 		--Create application

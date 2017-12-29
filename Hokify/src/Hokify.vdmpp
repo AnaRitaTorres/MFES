@@ -3,7 +3,12 @@ instance variables
   public users: set of (User) := {};
   public jobs: set of (Job) := {};
   public applications: set of (Application) := {};
-
+  
+  --Invariant: all jobs applications should have an user and a job registered in Hokify
+  inv forall application in set applications &
+  application.user in set users and
+  application.job in set jobs; 
+    
 operations
   --Creates a new instance of Hokify
 	public Hokify: () ==> Hokify
