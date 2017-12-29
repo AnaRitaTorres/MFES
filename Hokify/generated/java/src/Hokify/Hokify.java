@@ -105,6 +105,42 @@ public class Hokify {
     return j;
   }
 
+  public VDMSet getEmployees() {
+
+    VDMSet employees = SetUtil.set();
+    for (Iterator iterator_6 = users.iterator(); iterator_6.hasNext(); ) {
+      User user = (User) iterator_6.next();
+      if (Utils.is_(user, Employee.class)) {
+        employees = SetUtil.union(Utils.copy(employees), SetUtil.set(user));
+      }
+    }
+    return Utils.copy(employees);
+  }
+
+  public VDMSet getEmployers() {
+
+    VDMSet employers = SetUtil.set();
+    for (Iterator iterator_7 = users.iterator(); iterator_7.hasNext(); ) {
+      User user = (User) iterator_7.next();
+      if (Utils.is_(user, Employer.class)) {
+        employers = SetUtil.union(Utils.copy(employers), SetUtil.set(user));
+      }
+    }
+    return Utils.copy(employers);
+  }
+
+  public VDMSet getEmployeeApplications(final User user) {
+
+    VDMSet apps = SetUtil.set();
+    for (Iterator iterator_8 = applications.iterator(); iterator_8.hasNext(); ) {
+      Application application = (Application) iterator_8.next();
+      if (Utils.equals(application.getUser(), user)) {
+        apps = SetUtil.union(Utils.copy(apps), SetUtil.set(application));
+      }
+    }
+    return Utils.copy(apps);
+  }
+
   public String toString() {
 
     return "Hokify{"

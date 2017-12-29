@@ -77,6 +77,15 @@ public class HokifyTest extends MyTestCase {
     IO.print("Test Apply for Job => ");
     test.testApply();
     IO.println("Passed");
+    IO.print("Test List Employee Applications => ");
+    test.testListEmpApplications();
+    IO.println("Passed");
+    IO.print("Test List Employees => ");
+    test.testListEmployees();
+    IO.println("Passed");
+    IO.print("Test List Employers => ");
+    test.testListEmployers();
+    IO.println("Passed");
     IO.print("Test Delete Job => ");
     test.testDeleteJob();
     IO.println("Passed");
@@ -234,6 +243,26 @@ public class HokifyTest extends MyTestCase {
     assertEqual(2L, hokify.applications.size());
   }
 
+  private void testListEmpApplications() {
+
+    VDMSet employee1Apps = hokify.getEmployeeApplications(employee1);
+    VDMSet employee2Apps = hokify.getEmployeeApplications(employee2);
+    assertEqual(1L, employee1Apps.size());
+    assertEqual(1L, employee2Apps.size());
+  }
+
+  public void testListEmployees() {
+
+    VDMSet list = hokify.getEmployees();
+    assertEqual(2L, list.size());
+  }
+
+  public void testListEmployers() {
+
+    VDMSet list = hokify.getEmployers();
+    assertEqual(2L, list.size());
+  }
+
   public void testFailAddInterest() {
 
     Employee user1 = new Employee("Test");
@@ -340,6 +369,25 @@ public class HokifyTest extends MyTestCase {
     HokifyTest.hokify.createUser(user1);
     HokifyTest.hokify.addJob(user1, job1);
     HokifyTest.hokify.addJob(user1, job1);
+  }
+
+  public void testNotEmployeeApply() {
+
+    HokifyTest.hokify.createUser(employer1);
+    HokifyTest.hokify.addJob(employer1, job1);
+    HokifyTest.hokify.apply(employer1, job1);
+  }
+
+  public void testNotUserApply() {
+
+    Employee user1 = new Employee("Test");
+    HokifyTest.hokify.apply(user1, job1);
+  }
+
+  public void testFailApply() {
+
+    HokifyTest.hokify.createUser(employee1);
+    HokifyTest.hokify.apply(employee1, job1);
   }
 
   public HokifyTest() {}
