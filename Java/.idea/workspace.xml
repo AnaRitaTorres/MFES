@@ -40,15 +40,18 @@
       <file leaf-file-name="Cli.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Hokify/CLI/Cli.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="386">
-              <caret line="300" column="0" lean-forward="true" selection-start-line="300" selection-start-column="0" selection-end-line="300" selection-end-column="0" />
+            <state relative-caret-position="1034">
+              <caret line="438" column="42" lean-forward="false" selection-start-line="438" selection-start-column="42" selection-end-line="438" selection-end-column="42" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#userMenu#0;class#Cli#0" expanded="false" />
                 <element signature="method#askUser#0;class#Cli#0" expanded="false" />
                 <element signature="method#createUserMenu#0;class#Cli#0" expanded="false" />
+                <element signature="method#editUserMenu#0;class#Cli#0" expanded="false" />
                 <element signature="method#deleteUserMenu#0;class#Cli#0" expanded="false" />
                 <element signature="method#createJobMenu#0;class#Cli#0" expanded="false" />
+                <element signature="method#editJobMenu#0;class#Cli#0" expanded="false" />
+                <element signature="method#deleteJobMenu#0;class#Cli#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -699,12 +702,12 @@
       <option name="presentableId" value="Default" />
       <updated>1514476657127</updated>
       <workItem from="1514476662212" duration="12086000" />
-      <workItem from="1514497619228" duration="10600000" />
+      <workItem from="1514497619228" duration="10981000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="22686000" />
+    <option name="totallyTimeSpent" value="23067000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -801,8 +804,11 @@
             <element signature="method#userMenu#0;class#Cli#0" expanded="false" />
             <element signature="method#askUser#0;class#Cli#0" expanded="false" />
             <element signature="method#createUserMenu#0;class#Cli#0" expanded="false" />
+            <element signature="method#editUserMenu#0;class#Cli#0" expanded="false" />
             <element signature="method#deleteUserMenu#0;class#Cli#0" expanded="false" />
             <element signature="method#createJobMenu#0;class#Cli#0" expanded="false" />
+            <element signature="method#editJobMenu#0;class#Cli#0" expanded="false" />
+            <element signature="method#deleteJobMenu#0;class#Cli#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -968,15 +974,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Hokify/CLI/Cli.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="386">
-          <caret line="300" column="0" lean-forward="true" selection-start-line="300" selection-start-column="0" selection-end-line="300" selection-end-column="0" />
+        <state relative-caret-position="1034">
+          <caret line="438" column="42" lean-forward="false" selection-start-line="438" selection-start-column="42" selection-end-line="438" selection-end-column="42" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#userMenu#0;class#Cli#0" expanded="false" />
             <element signature="method#askUser#0;class#Cli#0" expanded="false" />
             <element signature="method#createUserMenu#0;class#Cli#0" expanded="false" />
+            <element signature="method#editUserMenu#0;class#Cli#0" expanded="false" />
             <element signature="method#deleteUserMenu#0;class#Cli#0" expanded="false" />
             <element signature="method#createJobMenu#0;class#Cli#0" expanded="false" />
+            <element signature="method#editJobMenu#0;class#Cli#0" expanded="false" />
+            <element signature="method#deleteJobMenu#0;class#Cli#0" expanded="false" />
           </folding>
         </state>
       </provider>

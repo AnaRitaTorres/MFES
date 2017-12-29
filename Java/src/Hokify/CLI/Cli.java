@@ -153,6 +153,7 @@ public class Cli {
                 editJobMenu(user);
                 break;
             case 6:
+                deleteJobMenu(user);
                 break;
             default:
                 break;
@@ -369,20 +370,6 @@ public class Cli {
         System.out.println(hokify.jobs);
     }
 
-    public void listEmployerJobs(Employer emp) {
-
-        Iterator it = emp.jobs.iterator();
-        int i = 1;
-
-        while (it.hasNext()) {
-            String[] job = it.next().toString().split(":=");
-            String[] name = job[1].split(",");
-            System.out.println(i + "." + name[0].replaceAll("\\W+", ""));
-            i++;
-        }
-
-    }
-
     public void editJobMenu(String user) {
 
         Scanner scanner = new Scanner(System.in);
@@ -449,5 +436,15 @@ public class Cli {
         System.out.println(hokify.jobs);
     }
 
+    public void deleteJobMenu(String user){
 
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Job To Delete(ID):");
+        int delete = scanner.nextInt();
+
+        hokify.deleteJob((Employer)hokify.getUserByName(user),hokify.getJobById(1));
+
+        //TODO:For Testing Purposes
+        System.out.println(hokify.jobs);
+    }
 }
