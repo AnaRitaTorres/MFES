@@ -71,7 +71,7 @@ operations
 		if application not in set applications
 		then applications := applications union {application};
 	)
-	pre is_Employee(user) and user in set users;
+	pre is_Employee(user) and user in set users and job in set jobs;
 	
 	--Delete all jobs applications
 	public deleteJobApplications: Job ==> ()
@@ -103,5 +103,45 @@ operations
 		
 		return j;
 	);
+	
+	--Get Employees
+	public getEmployees: () ==> set of Employee
+	getEmployees() == (
+		dcl employees: set of Employee := {};
+		
+		for all user in set users
+		do
+		if is_Employee(user)
+		then employees := employees union {user};
+		
+		return employees;
+	);
+	
+	--Get Employers
+	public getEmployers: () ==> set of Employer
+	getEmployers() == (
+		dcl employers: set of Employer := {};
+		
+		for all user in set users
+		do
+		if is_Employer(user)
+		then employers := employers union {user};
+		
+		return employers;
+	);
+	
+	--Get Employee applications
+	public getEmployeeApplications: User ==> set of Application
+	getEmployeeApplications(user) == (
+		dcl apps: set of Application := {};
+		
+		for all application in set applications
+		do
+		if application.getUser() = user
+		then apps := apps union {application};
+		
+		return apps;
+	)
+	pre user in set users and is_Employee(user);
 	
 end Hokify

@@ -72,7 +72,19 @@ operations
 				
 		IO`print("Test Apply for Job => ");
 		test.testApply();
-		IO`println("Passed");	
+		IO`println("Passed");
+		
+		IO`print("Test List Employee Applications => ");
+		test.testListEmpApplications();
+		IO`println("Passed");
+		
+		IO`print("Test List Employees => ");
+		test.testListEmployees();
+		IO`println("Passed");
+		
+		IO`print("Test List Employers => ");
+		test.testListEmployers();
+		IO`println("Passed");		
 		
 		IO`print("Test Delete Job => ");
 		test.testDeleteJob();
@@ -272,6 +284,32 @@ operations
 		assertEqual(2, card hokify.applications);
 	);
 	
+	--Test List Employee Application
+	private testListEmpApplications: () ==> ()
+	testListEmpApplications() == (
+		dcl employee1Apps: set of Application := hokify.getEmployeeApplications(employee1);
+		dcl employee2Apps: set of Application := hokify.getEmployeeApplications(employee2);
+		
+		assertEqual(1, card employee1Apps);
+		assertEqual(1, card employee2Apps);
+	);
+	
+	--Test List Employees
+	public testListEmployees: () ==> ()
+	testListEmployees() == (
+		dcl list: set of Employee := hokify.getEmployees();
+		
+		assertEqual(2, card list);
+	);
+	
+	--Test List Employers
+	public testListEmployers: () ==> ()
+	testListEmployers() == (
+		dcl list: set of Employer := hokify.getEmployers();
+		
+		assertEqual(2, card list);
+	);
+	
 	/*
 	 TESTING EXCEPTIONS
 	*/
@@ -358,6 +396,28 @@ operations
 		hokify.createUser(user1);
 		hokify.addJob(user1,job1);
 		hokify.addJob(user1,job1);
+	);
+	
+	--Test Fail Apply for Job
+	--User is not an Employee
+	public testNotEmployeeApply: () ==> ()
+	testNotEmployeeApply() == (
+		hokify.createUser(employer1);
+		hokify.addJob(employer1,job1);		
+		hokify.apply(employer1,job1);
+	);
+	--User is not in Hokify
+	public testNotUserApply: () ==> ()
+	testNotUserApply() == (
+		dcl user1: Employee := new Employee("Test");
+		
+		hokify.apply(user1,job1); 
+	);
+	--Job is not in Hokify
+	public testFailApply: () ==> ()
+	testFailApply() == (
+		hokify.createUser(employee1);
+		hokify.apply(employee1, job1);
 	);
 	
 functions
