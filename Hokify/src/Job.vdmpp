@@ -107,5 +107,9 @@ operations
 	getDescription() == (
 	 return Description;
 	);
+	
+	--Get Name
+	public getName: () ==> seq of char
+	getName() == return Name;
 		
 end Job

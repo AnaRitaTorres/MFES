@@ -144,4 +144,60 @@ operations
 	)
 	pre user in set users and is_Employee(user);
 	
+	--Search Job by Skills
+	public searchJobBySkills: Employee ==> set of Job
+	searchJobBySkills(user) == (
+		dcl j: set of Job := {};
+		
+		for all job in set jobs
+		do
+		if job.getSkills() \ user.Skills = {}
+		then j := j union {job};
+		
+		return j;
+	)
+	pre user in set users;
+	
+	--Search Job by Interests
+	public searchJobByInterests: Employee ==> set of Job
+	searchJobByInterests(user) == (
+		dcl j: set of Job := {};
+		
+		for all job in set jobs
+		do
+		if job.getAreas() inter user.Interests <> {}
+		then j := j union {job};
+		
+		return j;
+	)
+	pre user in set users;
+	
+	--Search Job By Location
+	public searchJobByLocation: seq of char ==> set of Job
+	searchJobByLocation(location) == (
+		dcl j: set of Job := {};
+		
+		for all job in set jobs
+		do
+		if job.getLocation() = location
+		then j := j union {job};
+		
+		return j;
+	)
+	pre location <> "";
+	
+	--Search Job By Name
+	public searchJobByName: seq of char ==> set of Job
+	searchJobByName(name) == (
+		dcl j: set of Job := {};
+		
+		for all job in set jobs
+		do
+		if job.getName() = name
+		then j := j union {job};
+		
+		return j;
+	)
+	pre name <> "";
+	
 end Hokify
