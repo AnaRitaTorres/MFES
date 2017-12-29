@@ -128,6 +128,8 @@ public class Cli {
             System.out.println("\nJOB\n");
             System.out.println("1.List Jobs");
             System.out.println("2.Search");
+        }
+        if(isEmployee){
             System.out.println("3.Apply For a Job");
         }
         if (isEmployer) {
@@ -150,6 +152,7 @@ public class Cli {
             case 2:
                 break;
             case 3:
+                jobApp(user);
                 break;
             case 4:
                 createJobMenu(user);
@@ -367,6 +370,18 @@ public class Cli {
         }
     }
 
+    public void jobApp(String user){
+
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Insert Job ID:");
+        int i = scanner.nextInt();
+
+        hokify.apply((Employee)hokify.getUserByName(user),hokify.getJobById(i));
+
+        //TODO:For Testing Purposes
+        System.out.println(hokify.applications);
+    }
     public void createJobMenu(String user) {
 
         Scanner scanner = new Scanner(System.in);
