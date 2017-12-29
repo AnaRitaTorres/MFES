@@ -3,6 +3,7 @@ package Hokify.CLI;
 import Hokify.*;
 import Hokify.quotes.FullTimeQuote;
 import Hokify.quotes.PartTimeQuote;
+import com.sun.org.apache.xpath.internal.SourceTree;
 import org.overture.codegen.runtime.VDMSet;
 
 import java.util.Iterator;
@@ -75,7 +76,7 @@ public class Cli {
         if (isEmployee || isEmployer) {
             System.out.println("\nUSER\n");
             System.out.println("1.Create User");
-            System.out.println("2.List Users");//TODO
+            System.out.println("2.List Users");
             System.out.println("3.Search");//TODO
             System.out.println("4.Edit User Information");
             System.out.println("5.Delete User");
@@ -96,6 +97,7 @@ public class Cli {
                 createUserMenu();
                 break;
             case 2:
+                listUsers();
                 break;
             case 3:
                 break;
@@ -106,6 +108,7 @@ public class Cli {
                 deleteUserMenu();
                 break;
             case 6:
+                listEmployeJobApps(user);
                 break;
             default:
                 break;
@@ -141,6 +144,7 @@ public class Cli {
                 mainMenu();
                 break;
             case 1:
+                listJobs();
                 break;
             case 2:
                 break;
@@ -237,6 +241,23 @@ public class Cli {
 
     }
 
+    public void listUsers(){
+        //TODO: pôr isto mais bonito está com bués chavetas
+        System.out.println("Employees:");
+
+        Iterator it1 = hokify.getEmployees().iterator();
+        while(it1.hasNext()){
+            System.out.println(it1.next().toString());
+        }
+
+        System.out.println("Employers:");
+
+        Iterator it2 = hokify.getEmployers().iterator();
+        while(it2.hasNext()){
+            System.out.println(it2.next().toString());
+        }
+    }
+
     public void editUserMenu(String user){
 
         Scanner scanner = new Scanner(System.in);
@@ -322,6 +343,27 @@ public class Cli {
 
         //TODO:For Testing Purposes
         System.out.println(hokify.users);
+    }
+
+    public void  listEmployeJobApps(String user){
+        //TODO: preciso de testar porque ainda não há job apps
+        System.out.println("Employee-Job Applications:");
+
+        Iterator it = hokify.getEmployeeApplications(hokify.getUserByName(user)).iterator();
+
+        while(it.hasNext()){
+            System.out.println(it.next().toString());
+        }
+    }
+    public void listJobs(){
+
+        System.out.println("Jobs:");
+
+        Iterator it = hokify.jobs.iterator();
+
+        while(it.hasNext()){
+            System.out.println(it.next().toString());
+        }
     }
 
     public void createJobMenu(String user) {
