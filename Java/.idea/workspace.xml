@@ -25,18 +25,41 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="Job.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Hokify/Job.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-126">
+              <caret line="14" column="34" lean-forward="true" selection-start-line="14" selection-start-column="34" selection-end-line="14" selection-end-column="34" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="Cli.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Hokify/CLI/Cli.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="61">
-              <caret line="309" column="49" lean-forward="true" selection-start-line="309" selection-start-column="49" selection-end-line="309" selection-end-column="49" />
+            <state relative-caret-position="386">
+              <caret line="300" column="0" lean-forward="true" selection-start-line="300" selection-start-column="0" selection-end-line="300" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="method#jobMenu#0;class#Cli#0" expanded="false" />
+                <element signature="method#userMenu#0;class#Cli#0" expanded="false" />
                 <element signature="method#askUser#0;class#Cli#0" expanded="false" />
                 <element signature="method#createUserMenu#0;class#Cli#0" expanded="false" />
-                <element signature="method#editUserMenu#0;class#Cli#0" expanded="false" />
+                <element signature="method#deleteUserMenu#0;class#Cli#0" expanded="false" />
+                <element signature="method#createJobMenu#0;class#Cli#0" expanded="false" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Application.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Hokify/Application.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="291">
+              <caret line="23" column="22" lean-forward="false" selection-start-line="23" selection-start-column="22" selection-end-line="23" selection-end-column="22" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -54,7 +77,7 @@
       <file leaf-file-name="Hokify.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Hokify/Hokify.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1024">
+            <state relative-caret-position="-753">
               <caret line="35" column="13" lean-forward="false" selection-start-line="35" selection-start-column="13" selection-end-line="35" selection-end-column="13" />
               <folding />
             </state>
@@ -107,10 +130,10 @@
         <option value="$PROJECT_DIR$/src/Hokify/Interface.form" />
         <option value="$PROJECT_DIR$/src/Hokify/Hokify.java" />
         <option value="$PROJECT_DIR$/src/Hokify/HokifyTest.java" />
-        <option value="$PROJECT_DIR$/src/Hokify/Job.java" />
         <option value="$PROJECT_DIR$/src/Hokify/Application.java" />
         <option value="$PROJECT_DIR$/src/Hokify/CLI/JobCli.java" />
         <option value="$PROJECT_DIR$/src/Hokify/CLI/UserCli.java" />
+        <option value="$PROJECT_DIR$/src/Hokify/Job.java" />
         <option value="$PROJECT_DIR$/src/Hokify/CLI/Cli.java" />
       </list>
     </option>
@@ -676,12 +699,12 @@
       <option name="presentableId" value="Default" />
       <updated>1514476657127</updated>
       <workItem from="1514476662212" duration="12086000" />
-      <workItem from="1514497619228" duration="8964000" />
+      <workItem from="1514497619228" duration="10600000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="21050000" />
+    <option name="totallyTimeSpent" value="22686000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -775,10 +798,11 @@
           <caret line="250" column="16" lean-forward="false" selection-start-line="250" selection-start-column="16" selection-end-line="250" selection-end-column="16" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#jobMenu#0;class#Cli#0" expanded="false" />
+            <element signature="method#userMenu#0;class#Cli#0" expanded="false" />
             <element signature="method#askUser#0;class#Cli#0" expanded="false" />
             <element signature="method#createUserMenu#0;class#Cli#0" expanded="false" />
-            <element signature="method#editUserMenu#0;class#Cli#0" expanded="false" />
+            <element signature="method#deleteUserMenu#0;class#Cli#0" expanded="false" />
+            <element signature="method#createJobMenu#0;class#Cli#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -876,25 +900,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Hokify/Job.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1634">
-          <caret line="4" column="23" lean-forward="false" selection-start-line="4" selection-start-column="23" selection-end-line="4" selection-end-column="23" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#101#125#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Hokify/Application.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
-          <caret line="23" column="22" lean-forward="false" selection-start-line="23" selection-start-column="22" selection-end-line="23" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Hokify/CLI/JobCli.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
@@ -911,26 +916,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Hokify/Hokify.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1024">
-          <caret line="35" column="13" lean-forward="false" selection-start-line="35" selection-start-column="13" selection-end-line="35" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Hokify/Employer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="33" lean-forward="false" selection-start-line="6" selection-start-column="33" selection-end-line="6" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Hokify/User.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="38">
           <caret line="6" column="13" lean-forward="false" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Hokify/Application.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="291">
+          <caret line="23" column="22" lean-forward="false" selection-start-line="23" selection-start-column="22" selection-end-line="23" selection-end-column="22" />
           <folding />
         </state>
       </provider>
@@ -943,16 +940,43 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Hokify/CLI/Cli.java">
+    <entry file="file://$PROJECT_DIR$/src/Hokify/Employer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="61">
-          <caret line="309" column="49" lean-forward="true" selection-start-line="309" selection-start-column="49" selection-end-line="309" selection-end-column="49" />
+        <state relative-caret-position="90">
+          <caret line="6" column="33" lean-forward="false" selection-start-line="6" selection-start-column="33" selection-end-line="6" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Hokify/Hokify.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-753">
+          <caret line="35" column="13" lean-forward="false" selection-start-line="35" selection-start-column="13" selection-end-line="35" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Hokify/Job.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-126">
+          <caret line="14" column="34" lean-forward="true" selection-start-line="14" selection-start-column="34" selection-end-line="14" selection-end-column="34" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#jobMenu#0;class#Cli#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Hokify/CLI/Cli.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="386">
+          <caret line="300" column="0" lean-forward="true" selection-start-line="300" selection-start-column="0" selection-end-line="300" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#userMenu#0;class#Cli#0" expanded="false" />
             <element signature="method#askUser#0;class#Cli#0" expanded="false" />
             <element signature="method#createUserMenu#0;class#Cli#0" expanded="false" />
-            <element signature="method#editUserMenu#0;class#Cli#0" expanded="false" />
+            <element signature="method#deleteUserMenu#0;class#Cli#0" expanded="false" />
+            <element signature="method#createJobMenu#0;class#Cli#0" expanded="false" />
           </folding>
         </state>
       </provider>

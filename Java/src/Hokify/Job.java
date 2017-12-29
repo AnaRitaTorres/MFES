@@ -6,7 +6,7 @@ import Hokify.quotes.*;
 
 @SuppressWarnings("all")
 public class Job {
-  public static Number ID = 1L;
+  public static Number ID = 1;
   private String Name = "";
   private VDMSet Skills = SetUtil.set();
   private VDMSet Areas = SetUtil.set();
@@ -29,7 +29,7 @@ public class Job {
     Location = location;
     Type = type;
     Description = description;
-    ID = Job.ID.longValue() + 1L;
+    ID = Job.ID.intValue() + 1;
   }
 
   public Job(

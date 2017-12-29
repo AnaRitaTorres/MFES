@@ -75,8 +75,8 @@ public class Cli {
         if (isEmployee || isEmployer) {
             System.out.println("\nUSER\n");
             System.out.println("1.Create User");
-            System.out.println("2.List Users");
-            System.out.println("3.Search");
+            System.out.println("2.List Users");//TODO
+            System.out.println("3.Search");//TODO
             System.out.println("4.Edit User Information");
             System.out.println("5.Delete User");
         }
@@ -111,7 +111,6 @@ public class Cli {
                 break;
         }
     }
-
 
     public void jobMenu() {
 
@@ -266,12 +265,12 @@ public class Cli {
                 userMenu();
                 break;
             case 1:
-                System.out.println("New Name:");
+                System.out.println("Change Name:");
                 String name = scanner.nextLine();
                 hokify.getUserByName(user).changeName(name);
                 break;
             case 2:
-                System.out.println("New Location:");
+                System.out.println("Change Location:");
                 String location = scanner.nextLine();
                 e.addLocation(location);
                 break;
@@ -292,14 +291,13 @@ public class Cli {
                 }
                 break;
             case 5:
-                System.out.println("Update CV:");
+                System.out.println("Change CV:");
                 String cv = scanner.nextLine();
                 e.createCV(cv);
                 break;
             default:
                 break;
         }
-
 
         //TODO:For Testing Purposes
         System.out.println(hokify.getUserByName(user));
@@ -324,6 +322,7 @@ public class Cli {
         //TODO:For Testing Purposes
         System.out.println(hokify.users);
     }
+
     public void createJobMenu(String user) {
 
         Scanner scanner = new Scanner(System.in);
@@ -386,13 +385,10 @@ public class Cli {
 
     public void editJobMenu(String user) {
 
-        //TODO
         Scanner scanner = new Scanner(System.in);
-        Employer emp = (Employer) hokify.getUserByName(user);
 
-        listEmployerJobs(emp);
-
-        int i = scanner.nextInt();
+        //TODO: apresentar a lista de jobs do user e permite ao utilizador
+        //TODO: escolher qual quer apagar(nºs no ecra serão os ids)
 
         System.out.println("\nEDIT JOB INFORMATION\n");
         System.out.println("1.Update Skills");
@@ -403,6 +399,7 @@ public class Cli {
         System.out.println("0.Go Back\n");
 
         int j = scanner.nextInt();
+        scanner.nextLine();
 
         switch(j){
             case 0:
@@ -410,20 +407,46 @@ public class Cli {
                 break;
             case 1:
                 System.out.println("Add a New Skill:");
-                String skill = scanner.nextLine();
-
+                String skills = scanner.nextLine();
+                String[] skill = skills.split(",");
+                for(int z=0; z < skill.length; z++){
+                    hokify.getJobById(1).addSkill(skill[z]);
+                }
                 break;
             case 2:
+                System.out.println("Add a New Area:");
+                String areas = scanner.nextLine();
+                String[] area = areas.split(",");
+                for(int z=0; z < area.length; z++){
+                    hokify.getJobById(1).addArea(area[z]);
+                }
                 break;
             case 3:
+                System.out.println("Change Location:");
+                String location = scanner.nextLine();
+                hokify.getJobById(1).changeLocation(location);
                 break;
             case 4:
+                System.out.println("Change Type(full(1)/part(2)):");
+                int type = scanner.nextInt();
+                if(type==1){
+                    hokify.getJobById(1).changeType(FullTimeQuote.getInstance());
+                }
+                else if(type==2){
+                    hokify.getJobById(1).changeType(PartTimeQuote.getInstance());
+                }
                 break;
             case 5:
+                System.out.println("Change Description:");
+                String description = scanner.nextLine();
+                hokify.getJobById(1).changeDescription(description);
                 break;
             default:
                 break;
         }
+
+        //TODO:For Testing Purposes
+        System.out.println(hokify.jobs);
     }
 
 
