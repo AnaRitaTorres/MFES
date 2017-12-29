@@ -44,6 +44,7 @@ public class Cli {
         hokify.createUser(e1);
         hokify.createUser(r1);
         hokify.addJob(r1, j1);
+        hokify.apply(e1,j1);
 
     }
 
@@ -346,7 +347,7 @@ public class Cli {
     }
 
     public void  listEmployeJobApps(String user){
-        //TODO: preciso de testar porque ainda não há job apps
+        //TODO: Pôr bonito
         System.out.println("Employee-Job Applications:");
 
         Iterator it = hokify.getEmployeeApplications(hokify.getUserByName(user)).iterator();
