@@ -103,6 +103,7 @@ public class Cli {
                 editUserMenu(user);
                 break;
             case 5:
+                deleteUserMenu();
                 break;
             case 6:
                 break;
@@ -304,6 +305,25 @@ public class Cli {
         System.out.println(hokify.getUserByName(user));
     }
 
+    public void deleteUserMenu(){
+
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("User To Delete:");
+        String delete = scanner.nextLine();
+
+        if(hokify.getUserByName(delete).getClass().equals(Employee.class)){
+            hokify.deleteUser((Employee)hokify.getUserByName(delete));
+        }
+        else if(hokify.getUserByName(delete).getClass().equals(Employer.class)){
+            hokify.deleteUser((Employer)hokify.getUserByName(delete));
+        }
+        else{
+            System.out.println("The user does not exist.");
+        }
+
+        //TODO:For Testing Purposes
+        System.out.println(hokify.users);
+    }
     public void createJobMenu(String user) {
 
         Scanner scanner = new Scanner(System.in);
