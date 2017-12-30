@@ -31,6 +31,11 @@ public class Cli {
         e1.addLocation("World");
         e1.addSkill("Acrobatic");
 
+        Employee e2 = new Employee("Sofia");
+        e2.addInterest("Teaching");
+        e2.addLocation("World");
+        e2.addSkill("Nursing");
+
         Employer r1 = new Employer("Sara");
         VDMSet set1 = new VDMSet();
         set1.add("Nursing");
@@ -42,6 +47,7 @@ public class Cli {
         r1.addJob(j1);
 
         hokify.createUser(e1);
+        hokify.createUser(e2);
         hokify.createUser(r1);
         hokify.addJob(r1, j1);
         hokify.apply(e1,j1);
@@ -78,12 +84,11 @@ public class Cli {
             System.out.println("\nUSER\n");
             System.out.println("1.Create User");
             System.out.println("2.List Users");
-            System.out.println("3.Search");//TODO
-            System.out.println("4.Edit User Information");
-            System.out.println("5.Delete User");
+            System.out.println("3.Edit User Information");
+            System.out.println("4.Delete User");
         }
         if (isEmployee) {
-            System.out.println("6.List Employee Job Applications");
+            System.out.println("5.List Employee Job Applications");
         }
         System.out.println("0.Go Back\n");
 
@@ -101,14 +106,12 @@ public class Cli {
                 listUsers();
                 break;
             case 3:
-                break;
-            case 4:
                 editUserMenu(user);
                 break;
-            case 5:
+            case 4:
                 deleteUserMenu();
                 break;
-            case 6:
+            case 5:
                 listEmployeeJobApps(user);
                 break;
             default:
@@ -150,6 +153,7 @@ public class Cli {
                 listJobs();
                 break;
             case 2:
+                searchJobs(user);
                 break;
             case 3:
                 jobApp(user);
@@ -258,7 +262,7 @@ public class Cli {
     }
 
     public void listUsers(){
-        //TODO: pôr isto mais bonito está com bués chavetas
+
         System.out.println("Employees:");
 
         Iterator it1 = hokify.getEmployees().iterator();
@@ -375,7 +379,7 @@ public class Cli {
     }
 
     public void  listEmployeeJobApps(String user){
-        //TODO: Pôr bonito
+
         System.out.println("Employee-Job Applications:");
 
         Iterator it = hokify.getEmployeeApplications(hokify.getUserByName(user)).iterator();
@@ -395,6 +399,51 @@ public class Cli {
 
         while(it.hasNext()){
             System.out.println(it.next().toString());
+        }
+
+        returnMenu();
+    }
+
+    public void searchJobs(String user){
+
+        Scanner scanner = new Scanner(System.in);
+        Employee e = (Employee) hokify.getUserByName(user);
+
+        System.out.println("1.Search Job by Skills");
+        System.out.println("2.Search Job by Interests");
+        System.out.println("3.Search Job by Location");
+        System.out.println("4.Search Job by Name");
+        System.out.println("0.Go Back\n");
+
+        int i = scanner.nextInt();
+        scanner.nextLine();
+
+        switch(i){
+            case 0:
+                jobMenu();
+                break;
+            case 1:
+                VDMSet skills = hokify.searchJobBySkills(e);
+                System.out.println(skills.toString());
+                break;
+            case 2:
+                VDMSet interests = hokify.searchJobByInterests(e);
+                System.out.println(interests);
+                break;
+            case 3:
+                System.out.println("Insert Location:");
+                String location = scanner.nextLine();
+                VDMSet locations = hokify.searchJobByLocation(location);
+                System.out.println(locations.toString().replaceAll("\\{","").replaceAll("}",""));
+                break;
+            case 4:
+                System.out.println("Insert Name:");
+                String name = scanner.nextLine();
+                VDMSet names = hokify.searchJobByName(name);
+                System.out.println(names.toString().replaceAll("\\{","").replaceAll("}",""));
+                break;
+            default:
+                break;
         }
 
         returnMenu();
@@ -463,9 +512,6 @@ public class Cli {
     public void editJobMenu(String user) {
 
         Scanner scanner = new Scanner(System.in);
-
-        //TODO: apresentar a lista de jobs do user e permite ao utilizador
-        //TODO: escolher qual quer apagar(nºs no ecra serão os ids)
 
         System.out.println("\nEDIT JOB INFORMATION\n");
         System.out.println("1.Update Skills");
