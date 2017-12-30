@@ -97,23 +97,21 @@ public class Job {
 
   public String toString() {
 
-    return "Job{"
-        + "ID := "
-        + Utils.toString(ID)
-        + ", Name := "
-        + Utils.toString(Name)
-        + ", Skills := "
-        + Utils.toString(Skills)
-        + ", Areas := "
-        + Utils.toString(Areas)
-        + ", Location := "
-        + Utils.toString(Location)
-        + ", Type := "
-        + Utils.toString(Type)
-        + ", Description := "
-        + Utils.toString(Description)
-        + ", id := "
-        + Utils.toString(id)
-        + "}";
+    return "\nJob: "
+        + Utils.toString(Name).replaceAll("\\W","")
+        + ", Skills: "
+        + Utils.toString(Skills).replaceAll("\\{","").replaceAll("}","").replaceAll("\"","")
+        + ", Areas: "
+        + Utils.toString(Areas).replaceAll("\\{","").replaceAll("}","").replaceAll("\"","")
+        + ", Location: "
+        + Utils.toString(Location).replaceAll("\\W","")
+        + ", Type: "
+        + Utils.toString(Type).replaceAll("\\W","")
+        + ", Description: "
+        + Utils.toString(Description).replaceAll("\\W","")
+        + ", id: "
+        + Utils.toString(id).replaceAll("\\W","")
+        + "\n";
+
   }
 }

@@ -11,7 +11,7 @@ instance variables
 	
 	job1: Job := new Job("Programador HTML", {"HTML"}, {"Programação","Web"},"Porto", <FullTime>, "Vaga para programador em HTML");
 	job2: Job := new Job("Programador Versátil", {"Java","C++"}, {"Programação"},"Porto", <PartTime>, "Vaga para programador em multiplas linguagens");
-	job3: Job := new Job("Designer", {"CSS"}, {"Programação","Design"},"Lisboa", <PartTime>, "Vaga design");
+	job3: Job := new Job("Designer", {"CSS"}, {"Design"},"Lisboa", <PartTime>, "Vaga design");
 	
 	--Instance of the application
   public static hokify: Hokify := new Hokify();
@@ -84,7 +84,23 @@ operations
 		
 		IO`print("Test List Employers => ");
 		test.testListEmployers();
-		IO`println("Passed");		
+		IO`println("Passed");
+		
+		IO`print("Test Search Jobs by Skills => ");
+		test.testSearchBySkills();
+		IO`println("Passed");
+		
+		IO`print("Test Search Jobs by Interests => ");
+		test.testSearchByInterests();
+		IO`println("Passed");
+		
+		IO`print("Test Search Jobs by Location => ");
+		test.testSearchByLocation();
+		IO`println("Passed");	
+		
+		IO`print("Test Search Jobs by Name => ");
+		test.testSearchByName();
+		IO`println("Passed");				
 		
 		IO`print("Test Delete Job => ");
 		test.testDeleteJob();
@@ -135,9 +151,10 @@ operations
 		user1.addSkill("Java");
 		user1.addSkill("C++");
 		user2.addSkill("HTML");
+		user2.addSkill("CSS");
 		
 		assertEqual(2, card user1.Skills);
-		assertEqual(1, card user2.Skills);
+		assertEqual(2, card user2.Skills);
 	);
 	
 	--Test Add Location
@@ -308,6 +325,47 @@ operations
 		dcl list: set of Employer := hokify.getEmployers();
 		
 		assertEqual(2, card list);
+	);
+	
+	--Test Search Jobs by Skills
+	private testSearchBySkills: () ==> ()
+	testSearchBySkills() == (
+		dcl results1: set of Job := hokify.searchJobBySkills(employee1);
+		dcl results2: set of Job := hokify.searchJobBySkills(employee2);
+		
+		assertEqual(0, card results1);
+		assertEqual(2, card results2);
+	);
+	
+	--Test Search Job By Interests
+	private testSearchByInterests: () ==> ()
+	testSearchByInterests() == (
+		dcl results1: set of Job := hokify.searchJobByInterests(employee1);
+		dcl results2: set of Job := hokify.searchJobByInterests(employee2);
+		
+		assertEqual(2, card results1);
+		assertEqual(3, card results2);
+	
+	);
+	
+	--Test Search Job by Location
+	private testSearchByLocation: () ==> ()
+	testSearchByLocation() == (
+		dcl results1: set of Job := hokify.searchJobByLocation("Maia");
+		dcl results2: set of Job := hokify.searchJobByLocation("Lisboa");
+		
+		assertEqual(1, card results1);
+		assertEqual(2, card results2);
+	);
+	
+	--Test Search Job by Name
+	private testSearchByName: () ==> ()
+	testSearchByName() == (
+		dcl results1: set of Job := hokify.searchJobByName("Programador HTML");
+		dcl results2: set of Job := hokify.searchJobByName("Programador Versátil");
+		
+		assertEqual({job1}, results1);
+		assertEqual({job2}, results2);
 	);
 	
 	/*

@@ -49,15 +49,17 @@ public class Employee extends User {
 
   public String toString() {
 
-    return "Employee{"
-        + "Skills := "
-        + Utils.toString(Skills)
-        + ", Interests := "
-        + Utils.toString(Interests)
-        + ", Location := "
-        + Utils.toString(Location)
-        + ", CV := "
-        + Utils.toString(CV)
-        + "}";
+    return "Name: "
+        + Utils.toString(Name).replaceAll("\\W","")
+        + "\n"
+        + " Skills: "
+        + Utils.toString(Skills).replaceAll("\\W","")
+        + ", Interests: "
+        + Utils.toString(Interests).replaceAll("\\W","")
+        + ", Location: "
+        + Utils.toString(Location).replaceAll("\\W","")
+        + ", CV: "
+        + Utils.toString(CV).replaceAll("\\W","")
+        + "\n";
   }
 }

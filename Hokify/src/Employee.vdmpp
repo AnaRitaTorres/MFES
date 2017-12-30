@@ -10,7 +10,6 @@ instance variables
  	public Employee: seq of char ==> Employee
  	Employee(name) == (
  		User(name);
- 		return self
  	)
  	post Name = name and
  	Skills = {} and

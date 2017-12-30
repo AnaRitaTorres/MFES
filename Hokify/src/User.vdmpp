@@ -10,11 +10,4 @@ operations
 	)
 	post Name = name;
 	
-	--Change Name
-	public changeName: seq of char ==> ()
-	changeName(name) == (
-		Name := name;
-	)
-	pre name <> ""
-	post Name = name;
 end User

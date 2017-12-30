@@ -7,7 +7,6 @@ class Employer is subclass of User
 		public Employer: seq of char ==> Employer
 		Employer(name) == (
 			User(name);
-			return self;
 		)
 		post Name = name;
 		

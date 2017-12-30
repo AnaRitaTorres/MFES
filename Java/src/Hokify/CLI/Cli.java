@@ -109,7 +109,7 @@ public class Cli {
                 deleteUserMenu();
                 break;
             case 6:
-                listEmployeJobApps(user);
+                listEmployeeJobApps(user);
                 break;
             default:
                 break;
@@ -367,7 +367,7 @@ public class Cli {
         returnMenu();
     }
 
-    public void  listEmployeJobApps(String user){
+    public void  listEmployeeJobApps(String user){
         //TODO: Pôr bonito
         System.out.println("Employee-Job Applications:");
 
