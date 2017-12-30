@@ -141,6 +141,54 @@ public class Hokify {
     return Utils.copy(apps);
   }
 
+  public VDMSet searchJobBySkills(final Employee user) {
+
+    VDMSet j = SetUtil.set();
+    for (Iterator iterator_9 = jobs.iterator(); iterator_9.hasNext(); ) {
+      Job job = (Job) iterator_9.next();
+      if (Utils.empty(SetUtil.diff(job.getSkills(), user.Skills))) {
+        j = SetUtil.union(Utils.copy(j), SetUtil.set(job));
+      }
+    }
+    return Utils.copy(j);
+  }
+
+  public VDMSet searchJobByInterests(final Employee user) {
+
+    VDMSet j = SetUtil.set();
+    for (Iterator iterator_10 = jobs.iterator(); iterator_10.hasNext(); ) {
+      Job job = (Job) iterator_10.next();
+      if (!(Utils.empty(SetUtil.intersect(job.getAreas(), user.Interests)))) {
+        j = SetUtil.union(Utils.copy(j), SetUtil.set(job));
+      }
+    }
+    return Utils.copy(j);
+  }
+
+  public VDMSet searchJobByLocation(final String location) {
+
+    VDMSet j = SetUtil.set();
+    for (Iterator iterator_11 = jobs.iterator(); iterator_11.hasNext(); ) {
+      Job job = (Job) iterator_11.next();
+      if (Utils.equals(job.getLocation(), location)) {
+        j = SetUtil.union(Utils.copy(j), SetUtil.set(job));
+      }
+    }
+    return Utils.copy(j);
+  }
+
+  public VDMSet searchJobByName(final String name) {
+
+    VDMSet j = SetUtil.set();
+    for (Iterator iterator_12 = jobs.iterator(); iterator_12.hasNext(); ) {
+      Job job = (Job) iterator_12.next();
+      if (Utils.equals(job.getName(), name)) {
+        j = SetUtil.union(Utils.copy(j), SetUtil.set(job));
+      }
+    }
+    return Utils.copy(j);
+  }
+
   public String toString() {
 
     return "Hokify{"

@@ -17,11 +17,6 @@ public class User {
     cg_init_User_1(name);
   }
 
-  public void changeName(final String name) {
-
-    Name = name;
-  }
-
   public User() {}
 
   public String toString() {

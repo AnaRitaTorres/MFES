@@ -93,6 +93,11 @@ public class Job {
     return Description;
   }
 
+  public String getName() { 
+ 
+    return Name; 
+  } 
+
   public Job() {}
 
   public String toString() {
@@ -108,7 +113,7 @@ public class Job {
         + ", Type: "
         + Utils.toString(Type).replaceAll("\\W","")
         + ", Description: "
-        + Utils.toString(Description).replaceAll("\\W","")
+        + Utils.toString(Description).replaceAll("\\{","").replaceAll("}","").replaceAll("\"","")
         + ", id: "
         + Utils.toString(id).replaceAll("\\W","")
         + "\n";
