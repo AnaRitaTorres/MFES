@@ -5,8 +5,8 @@ import org.overture.codegen.runtime.*;
 
 @SuppressWarnings("all")
 public class Application {
-  private User user;
-  private Job job;
+  public User user;
+  public Job job;
 
   public void cg_init_Application_1(final User u, final Job j) {
 

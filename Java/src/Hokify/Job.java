@@ -93,6 +93,11 @@ public class Job {
     return Description;
   }
 
+  public String getName() { 
+ 
+    return Name; 
+  } 
+
   public Job() {}
 
   public String toString() {

@@ -29,7 +29,7 @@ public class HokifyTest extends MyTestCase {
       new Job(
           "Designer",
           SetUtil.set("CSS"),
-          SetUtil.set("Programa��o", "Design"),
+          SetUtil.set("Design"),
           "Lisboa",
           Hokify.quotes.PartTimeQuote.getInstance(),
           "Vaga design");
@@ -86,6 +86,18 @@ public class HokifyTest extends MyTestCase {
     IO.print("Test List Employers => ");
     test.testListEmployers();
     IO.println("Passed");
+    IO.print("Test Search Jobs by Skills => ");
+    test.testSearchBySkills();
+    IO.println("Passed");
+    IO.print("Test Search Jobs by Interests => ");
+    test.testSearchByInterests();
+    IO.println("Passed");
+    IO.print("Test Search Jobs by Location => ");
+    test.testSearchByLocation();
+    IO.println("Passed");
+    IO.print("Test Search Jobs by Name => ");
+    test.testSearchByName();
+    IO.println("Passed");
     IO.print("Test Delete Job => ");
     test.testDeleteJob();
     IO.println("Passed");
@@ -124,8 +136,9 @@ public class HokifyTest extends MyTestCase {
     user1.addSkill("Java");
     user1.addSkill("C++");
     user2.addSkill("HTML");
+    user2.addSkill("CSS");
     assertEqual(2L, user1.Skills.size());
-    assertEqual(1L, user2.Skills.size());
+    assertEqual(2L, user2.Skills.size());
   }
 
   private void testAddLocation() {
@@ -261,6 +274,38 @@ public class HokifyTest extends MyTestCase {
 
     VDMSet list = hokify.getEmployers();
     assertEqual(2L, list.size());
+  }
+
+  private void testSearchBySkills() {
+
+    VDMSet results1 = hokify.searchJobBySkills(employee1);
+    VDMSet results2 = hokify.searchJobBySkills(employee2);
+    assertEqual(0L, results1.size());
+    assertEqual(2L, results2.size());
+  }
+
+  private void testSearchByInterests() {
+
+    VDMSet results1 = hokify.searchJobByInterests(employee1);
+    VDMSet results2 = hokify.searchJobByInterests(employee2);
+    assertEqual(2L, results1.size());
+    assertEqual(3L, results2.size());
+  }
+
+  private void testSearchByLocation() {
+
+    VDMSet results1 = hokify.searchJobByLocation("Maia");
+    VDMSet results2 = hokify.searchJobByLocation("Lisboa");
+    assertEqual(1L, results1.size());
+    assertEqual(2L, results2.size());
+  }
+
+  private void testSearchByName() {
+
+    VDMSet results1 = hokify.searchJobByName("Programador HTML");
+    VDMSet results2 = hokify.searchJobByName("Programador Vers�til");
+    assertEqual(SetUtil.set(job1), Utils.copy(results1));
+    assertEqual(SetUtil.set(job2), Utils.copy(results2));
   }
 
   public void testFailAddInterest() {
