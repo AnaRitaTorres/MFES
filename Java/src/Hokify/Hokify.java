@@ -181,8 +181,7 @@ public class Hokify {
   public VDMSet searchJobByName(final String name) { 
  
     VDMSet j = SetUtil.set(); 
-+
-    for (Iterator iterator_12 = jobs.iterator(); iterator_12.hasNext(); ) { 
+    for (Iterator iterator_12 = jobs.iterator(); iterator_12.hasNext(); ) {
       Job job = (Job) iterator_12.next(); 
       if (Utils.equals(job.getName(), name)) { 
         j = SetUtil.union(Utils.copy(j), SetUtil.set(job)); 

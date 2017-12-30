@@ -279,9 +279,10 @@ public class Cli {
     public void editUserMenu(String user){
 
         Scanner scanner = new Scanner(System.in);
-        boolean isEmployee = false;
+        boolean isEmployee = false, isEmployer = false;
 
         isEmployee = hokify.getUserByName(user).getClass().equals(Employee.class);
+        isEmployer = hokify.getUserByName(user).getClass().equals(Employer.class);
 
         System.out.println("\nEDIT USER INFORMATION:\n");
         System.out.println("1.Update Name");
@@ -307,7 +308,13 @@ public class Cli {
             case 1:
                 System.out.println("Change Name:");
                 String name = scanner.nextLine();
-                hokify.getUserByName(user).changeName(name);
+                if(isEmployee){
+                    ((Employee) hokify.getUserByName(user)).changeName(name);
+                }
+                if(isEmployer){
+                    ((Employer) hokify.getUserByName(user)).changeName(name);
+                }
+
                 break;
             case 2:
                 System.out.println("Change Location:");
