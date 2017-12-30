@@ -3,7 +3,6 @@ package Hokify.CLI;
 import Hokify.*;
 import Hokify.quotes.FullTimeQuote;
 import Hokify.quotes.PartTimeQuote;
-import com.sun.org.apache.xpath.internal.SourceTree;
 import org.overture.codegen.runtime.VDMSet;
 
 import java.util.Iterator;
