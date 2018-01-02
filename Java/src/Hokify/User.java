@@ -21,6 +21,6 @@ public class User {
 
   public String toString() {
 
-    return "User{" + "Name := " + Utils.toString(Name) + "}";
+    return "Name: " + Utils.toString(Name);
   }
 }

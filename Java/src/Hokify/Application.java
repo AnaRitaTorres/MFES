@@ -33,11 +33,11 @@ public class Application {
 
   public String toString() {
 
-    return "Application{"
-        + "user := "
+    return "Application:\n"
+        + "User:\n "
         + Utils.toString(user)
-        + ", job := "
+        + "Job:\n "
         + Utils.toString(job)
-        + "}";
+        + "\n";
   }
 }
