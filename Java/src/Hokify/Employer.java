@@ -38,8 +38,7 @@ public class Employer extends User {
 
     return "Name: "
             + Utils.toString(Name).replaceAll("\\W","")
-            + "\n"
-            + " Jobs: " + Utils.toString(jobs).replaceAll("\\{","").replaceAll("}","")
+            + " Jobs:\n " + Utils.toString(jobs).replaceAll("\\{","").replaceAll("}","")
             + "\n";
   }
 }

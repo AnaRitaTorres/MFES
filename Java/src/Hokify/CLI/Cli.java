@@ -32,8 +32,10 @@ public class Cli {
 
         Employee e2 = new Employee("Sofia");
         e2.addInterest("Teaching");
+        e2.addInterest("Daycare");
         e2.addLocation("World");
         e2.addSkill("Nursing");
+        e2.addSkill("Cooking");
 
         Employer r1 = new Employer("Sara");
         VDMSet set1 = new VDMSet();
@@ -42,7 +44,7 @@ public class Cli {
         VDMSet set2 = new VDMSet();
         set2.add("Teaching");
         set2.add("Daycare");
-        Job j1 = new Job("Babysitter", set1, set2, "London", PartTimeQuote.getInstance(), "Much Happy");
+        Job j1 = new Job("Babysitter", set1, set2, "London", PartTimeQuote.getInstance(), "Children from 2 to 5. Payment: $500");
         r1.addJob(j1);
 
         hokify.createUser(e1);
@@ -73,26 +75,18 @@ public class Cli {
 
     public void userMenu() {
 
-        boolean isEmployer = false, isEmployee = false;
-        String user = askUser();
-
-        isEmployer = hokify.getUserByName(user).getClass().equals(Employer.class);
-        isEmployee = hokify.getUserByName(user).getClass().equals(Employee.class);
-
-        if (isEmployee || isEmployer) {
-            System.out.println("\nUSER\n");
-            System.out.println("1.Create User");
-            System.out.println("2.List Users");
-            System.out.println("3.Edit User Information");
-            System.out.println("4.Delete User");
-        }
-        if (isEmployee) {
-            System.out.println("5.List Employee Job Applications");
-        }
+        System.out.println("\nUSER\n");
+        System.out.println("1.Create User");
+        System.out.println("2.List Users");
+        System.out.println("3.Edit User Information");
+        System.out.println("4.Delete User");
+        System.out.println("5.List Employee Job Applications");
         System.out.println("0.Go Back\n");
 
+        String user;
         Scanner scanner = new Scanner(System.in);
         int i = scanner.nextInt();
+        scanner.nextLine();
 
         switch (i) {
             case 0:
@@ -105,13 +99,20 @@ public class Cli {
                 listUsers();
                 break;
             case 3:
+                user = askUser();
                 editUserMenu(user);
                 break;
             case 4:
                 deleteUserMenu();
                 break;
             case 5:
-                listEmployeeJobApps(user);
+                user = askUser();
+                if(hokify.getUserByName(user).getClass() == Employee.class){
+                    listEmployeeJobApps(user);
+                }
+                else{
+                    System.out.println("User needs to be an Employee to access this area.");
+                }
                 break;
             default:
                 break;
@@ -120,29 +121,20 @@ public class Cli {
 
     public void jobMenu() {
 
-        String user = askUser();
-        boolean isEmployer = false, isEmployee = false;
+        String user;
 
-        isEmployer = hokify.getUserByName(user).getClass().equals(Employer.class);
-        isEmployee = hokify.getUserByName(user).getClass().equals(Employee.class);
-
-        if (isEmployee || isEmployer) {
-            System.out.println("\nJOB\n");
-            System.out.println("1.List Jobs");
-            System.out.println("2.Search");
-        }
-        if(isEmployee){
-            System.out.println("3.Apply For a Job");
-        }
-        if (isEmployer) {
-            System.out.println("4.Create Job");
-            System.out.println("5.Edit Job Information");
-            System.out.println("6.Delete Job");
-        }
+        System.out.println("\nJOB\n");
+        System.out.println("1.List Jobs");
+        System.out.println("2.Search");
+        System.out.println("3.Apply For a Job");
+        System.out.println("4.Create Job");
+        System.out.println("5.Edit Job Information");
+        System.out.println("6.Delete Job");
         System.out.println("0.Go Back\n");
 
         Scanner scanner = new Scanner(System.in);
         int i = scanner.nextInt();
+        scanner.nextLine();
 
         switch (i) {
             case 0:
@@ -152,19 +144,44 @@ public class Cli {
                 listJobs();
                 break;
             case 2:
+                user = askUser();
                 searchJobs(user);
                 break;
             case 3:
-                jobApp(user);
+                user = askUser();
+                if(hokify.getUserByName(user).getClass() == Employee.class){
+                    jobApp(user);
+                }
+                else{
+                    System.out.println("User needs to be an Employee to access this area.");
+                }
                 break;
             case 4:
-                createJobMenu(user);
+                user = askUser();
+                if(hokify.getUserByName(user).getClass() == Employer.class){
+                    createJobMenu(user);
+                }
+                else{
+                    System.out.println("User needs to be an Employer to access this area.");
+                }
                 break;
             case 5:
-                editJobMenu(user);
+                user = askUser();
+                if(hokify.getUserByName(user).getClass() == Employer.class){
+                    editJobMenu(user);
+                }
+                else{
+                    System.out.println("User needs to be an Employer to access this area.");
+                }
                 break;
             case 6:
-                deleteJobMenu(user);
+                user = askUser();
+                if(hokify.getUserByName(user).getClass() == Employer.class){
+                    deleteJobMenu(user);
+                }
+                else{
+                    System.out.println("User needs to be an Employer to access this area.");
+                }
                 break;
             default:
                 break;
@@ -254,8 +271,6 @@ public class Cli {
         }
 
         System.out.println("User was created!");
-         //TODO:For Testing Purposes
-        System.out.println(hokify.users);
 
         returnMenu();
     }
@@ -349,9 +364,6 @@ public class Cli {
                 break;
         }
 
-        //TODO:For Testing Purposes
-        System.out.println(hokify.getUserByName(user));
-
         returnMenu();
     }
 
@@ -363,16 +375,16 @@ public class Cli {
 
         if(hokify.getUserByName(delete).getClass().equals(Employee.class)){
             hokify.deleteUser((Employee)hokify.getUserByName(delete));
+            System.out.println("The job was deleted!\n");
         }
         else if(hokify.getUserByName(delete).getClass().equals(Employer.class)){
             hokify.deleteUser((Employer)hokify.getUserByName(delete));
+            System.out.println("The job was deleted!\n");
         }
         else{
             System.out.println("The user does not exist.");
         }
 
-        //TODO:For Testing Purposes
-        System.out.println(hokify.users);
 
         returnMenu();
     }
@@ -423,23 +435,42 @@ public class Cli {
                 break;
             case 1:
                 VDMSet skills = hokify.searchJobBySkills(e);
-                System.out.println(skills.toString());
+                if(skills.isEmpty()){
+                    System.out.println("The skills are not compatible.\n");
+                }else{
+                    System.out.println(skills.toString().replaceAll("\\{","").replaceAll("}",""));
+                }
                 break;
             case 2:
                 VDMSet interests = hokify.searchJobByInterests(e);
-                System.out.println(interests);
+                if(interests.isEmpty()){
+                    System.out.println("The interests are not compatible.\n");
+                }
+                else{
+                    System.out.println(interests.toString().replaceAll("\\{","").replaceAll("}",""));
+                }
                 break;
             case 3:
                 System.out.println("Insert Location:");
                 String location = scanner.nextLine();
                 VDMSet locations = hokify.searchJobByLocation(location);
-                System.out.println(locations.toString().replaceAll("\\{","").replaceAll("}",""));
+                if(locations.isEmpty()){
+                    System.out.println("The location is not compatible.\n");
+                }
+                else{
+                    System.out.println(locations.toString().replaceAll("\\{","").replaceAll("}",""));
+                }
                 break;
             case 4:
                 System.out.println("Insert Name:");
                 String name = scanner.nextLine();
                 VDMSet names = hokify.searchJobByName(name);
-                System.out.println(names.toString().replaceAll("\\{","").replaceAll("}",""));
+                if(names.isEmpty()){
+                    System.out.println("The name is not compatible.\n");
+                }
+                else{
+                    System.out.println(names.toString().replaceAll("\\{","").replaceAll("}",""));
+                }
                 break;
             default:
                 break;
@@ -453,9 +484,6 @@ public class Cli {
         int i = askJobId();
 
         hokify.apply((Employee)hokify.getUserByName(user),hokify.getJobById(i));
-
-        //TODO:For Testing Purposes
-        System.out.println(hokify.applications);
 
         returnMenu();
     }
@@ -501,9 +529,6 @@ public class Cli {
         }
 
         hokify.addJob((Employer) hokify.getUserByName(user), job);
-
-        //TODO:For Testing Purposes
-        System.out.println(hokify.jobs);
 
         returnMenu();
     }
@@ -573,9 +598,6 @@ public class Cli {
                 break;
         }
 
-        //TODO:For Testing Purposes
-        System.out.println(hokify.jobs);
-
         returnMenu();
     }
 
@@ -585,8 +607,7 @@ public class Cli {
 
         hokify.deleteJob((Employer)hokify.getUserByName(user),hokify.getJobById(x));
 
-        //TODO:For Testing Purposes
-        System.out.println(hokify.jobs);
+        System.out.println("The job was deleted!\n");
 
         returnMenu();
     }

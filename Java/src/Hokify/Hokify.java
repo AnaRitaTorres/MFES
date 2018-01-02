@@ -146,8 +146,7 @@ public class Hokify {
     VDMSet j = SetUtil.set(); 
     for (Iterator iterator_9 = jobs.iterator(); iterator_9.hasNext(); ) { 
       Job job = (Job) iterator_9.next();
-      System.out.println(job.getSkills() + " " + user.Skills);
-      if (Utils.empty(SetUtil.diff(job.getSkills(), user.Skills))) { 
+      if (Utils.empty(SetUtil.diff(job.getSkills(), user.Skills))) {
         j = SetUtil.union(Utils.copy(j), SetUtil.set(job)); 
       } 
     } 
